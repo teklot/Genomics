@@ -19,6 +19,8 @@ Sample:    ATGAGTACCCGA
 
 ---
 
+![Mutation Types by Scale](images/mutation-types.svg)
+
 ## 1. Types of Mutations by Scale
 
 ### Single Nucleotide Variants (SNVs)
@@ -95,6 +97,8 @@ DNA:    A T G  G C T  T A C  T G A
      Silent (codon still codes same AA):
         A T G  G C G  T A C  T G A
         Met    Ala    Tyr    STOP        ← no change (GCU→GCG)
+
+![Frameshift effect on reading frame](images/frameshift-effect.svg)
 
      Frameshift (indel shifts everything):
         A T G  G C T  T A C  T G A

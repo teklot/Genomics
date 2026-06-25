@@ -118,6 +118,25 @@ docker run --rm -it -v $(pwd)/data:/data genomics-pipeline:1.0 /bin/bash
 
 ### Using Multi-Stage Builds
 
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
+flowchart LR
+    subgraph Build
+        A[ubuntu:22.04 AS builder] --> B[apt-get build-essential]
+        B --> C[Download & compile BWA]
+        C --> D[bwa binary]
+    end
+    subgraph Runtime
+        E[ubuntu:22.04] --> F[COPY --from=builder bwa]
+        F --> G[/usr/local/bin/bwa]
+    end
+    D -.-> F
+    style A fill:#c05621,color:#fff
+    style E fill:#276749,color:#fff
+    style D fill:#d69e2e
+    style G fill:#38a169,color:#fff
+```
+
 ```dockerfile
 # Build stage
 FROM ubuntu:22.04 AS builder

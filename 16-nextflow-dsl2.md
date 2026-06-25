@@ -32,6 +32,29 @@ Software analogy:
 
 ## 2. Core Concepts
 
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
+flowchart TD
+    subgraph Definition
+        A[Channel\n.fromPath] --> B[Process\nBWA_ALIGN]
+        B --> C[Channel\nSORTED_BAM]
+    end
+    subgraph Execution
+        D[Queue channel] --> E[Task\nbwa mem]
+        E --> F[Output channel]
+    end
+    subgraph Lifecycle
+        G[Submitted] --> H[Running]
+        H --> I[Completed]
+        H --> J[Failed]
+        I --> K[Cached]
+    end
+    style Definition fill:#ebf8ff
+    style Execution fill:#fffaf0
+    style Lifecycle fill:#f0fff4
+    style A fill:#2b6cb0,color:#fff
+    style K fill:#276749,color:#fff
+    style J fill:#c53030,color:#fff
 ```
 Pipeline = Workflow definition (composed of reusable Modules)
 Module   = A single process (e.g., "run FastQC")
@@ -323,6 +346,36 @@ process {
 ---
 
 ## 8. Real Pipeline: WGS Germline
+
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
+flowchart TD
+    subgraph Input
+        READS[FASTQ Pairs]
+        REF[Reference Genome]
+    end
+    subgraph Processing
+        QC[FastQC] --> Trim[fastp]
+        Trim --> Align[BWA-MEM]
+        Align --> Sort[samtools sort]
+        Sort --> Dedup[MarkDuplicates]
+        Dedup --> BQSR[BQSR]
+        BQSR --> Call[HaplotypeCaller]
+    end
+    subgraph Output
+        Call --> VCF[GVCF/ VCF]
+        VCF --> Annot[VEP/SnpEff]
+        Annot --> Filter[bcftools filter]
+        Filter --> Report[MultiQC Report]
+    end
+    READS --> QC
+    REF --> Align
+    style Input fill:#ebf8ff
+    style Output fill:#f0fff4
+    style Processing fill:#fffaf0
+    style READS fill:#2b6cb0,color:#fff
+    style Report fill:#276749,color:#fff
+```
 
 ### `main.nf`
 

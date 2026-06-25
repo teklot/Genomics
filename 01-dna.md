@@ -71,6 +71,8 @@ Phosphate → Sugar → Phosphate → Sugar → Phosphate → Sugar ...
 
 DNA is **double-stranded**. Two strands run in **opposite directions** (antiparallel) and are held together by **base pairing**.
 
+![DNA Double Helix with base pairing](images/dna-double-helix.svg)
+
 ### Base-Pairing Rules
 
 ```

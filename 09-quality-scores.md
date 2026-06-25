@@ -14,8 +14,10 @@ Every base call from a sequencer comes with a **quality score** — a probabilit
 Read:    A C T G A C T G
 Qual:    I I I I I I I I
          ↑
-      Q = 40 → P(error) = 0.0001 (99.99% accurate)
+       Q = 40 → P(error) = 0.0001 (99.99% accurate)
 ```
+
+![Per-base quality distribution — good lane vs bad lane](images/quality-distribution.svg)
 
 ---
 

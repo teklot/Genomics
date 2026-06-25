@@ -10,6 +10,8 @@
 
 An integrated genomics pipeline is a **data factory**: raw sequences go in, annotated variants come out, and every step is automated, monitored, and reproducible.
 
+![End-to-end pipeline architecture](images/pipeline-architecture.svg)
+
 ```
 FASTQ → QC → Align → Dedup → BQSR → Call → Filter → Annotate → VCF
   │      │      │       │       │       │       │         │       │
@@ -23,22 +25,29 @@ FASTQ → QC → Align → Dedup → BQSR → Call → Filter → Annotate → V
 
 ## 1. Pipeline Architecture
 
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
+flowchart TD
+    subgraph AWS["AWS Cloud"]
+        S3[S3 Input\nFASTQ] --> NF[Nextflow\nPipeline]
+        NF --> Result[S3 Output\nVCF/Reports]
+        EFS[EFS\nReference] --> NF
+        ECR[ECR\nContainers] --> NF
+        Batch[AWS Batch\nCompute Farm] --> NF
+    end
+    subgraph Steps[" "]
+        NF --> QC[FastQC/fastp]
+        QC --> Align[BWA-MEM]
+        Align --> Dedup[MarkDuplicates]
+        Dedup --> Call[HaplotypeCaller]
+        Call --> Annot[VEP / SnpEff]
+        Annot --> Filter[bcftools filter]
+    end
+    style AWS fill:#ebf8ff,stroke:#2b6cb0
+    style S3 fill:#2b6cb0,color:#fff
+    style Result fill:#276749,color:#fff
+    style Steps fill:#fff
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                     AWS Cloud                                │
-│                                                              │
-│  ┌─────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐  │
-│  │  S3     │   │  Batch   │   │  EFS     │   │  ECR     │  │
-│  │  Input  │──▶│ Compute  │──▶│  Ref     │   │  Images  │  │
-│  │  FASTQ  │   │  Farm    │   │  Genome  │   │          │  │
-│  └─────────┘   └────┬─────┘   └──────────┘   └──────────┘  │
-│                     │                                        │
-│  ┌──────────────────▼──────────────────────────────────────┐ │
-│  │              Nextflow Pipeline                           │ │
-│  │                                                          │ │
-│  │  FASTQC → FASTP → BWA-MEM → MarkDuplicates → BQSR →     │ │
-│  │  HaplotypeCaller → VEP/SnpEff → bcftools filter          │ │
-│  │                                                          │ │
 │  └──────────────────────────────────────────────────────────┘ │
 │                     │                                        │
 │  ┌──────────────────▼──────────────────────────────────────┐ │

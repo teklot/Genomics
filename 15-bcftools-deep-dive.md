@@ -364,6 +364,24 @@ bcftools gtcheck -g truth.vcf.gz sample.vcf.gz
 
 ## 14. Complete Workflow: BAM to Filtered VCF
 
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
+flowchart LR
+    BAM[Dedup BAM] --> Mpileup[samtools mpileup]
+    Mpileup --> Call[bcftools call]
+    Call --> Raw[Raw VCF]
+    Raw --> Index[bcftools index]
+    Raw --> Stats[bcftools stats]
+    Raw --> Filter[bcftools filter]
+    Filter --> Norm[bcftools norm]
+    Norm --> Annot[bcftools annotate]
+    Annot --> Final[Filtered VCF]
+    Final --> Query[bcftools query]
+    Final --> Consensus[bcftools consensus]
+    style BAM fill:#2b6cb0,color:#fff
+    style Final fill:#276749,color:#fff
+```
+
 ```bash
 REF=hg38.fa
 BAM=sample_dedup.bam

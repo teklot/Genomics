@@ -22,6 +22,8 @@ Source Code  →  Build Artifact  →  Executable Binary
 
 ---
 
+![Central Dogma: DNA → RNA → Protein](images/central-dogma.svg)
+
 ## 1. The Full Pipeline
 
 ```
@@ -172,6 +174,8 @@ And 3 reverse frames from the complement.
 Finding the correct reading frame is like finding the right entry point in a binary — the ribosome scans for the first AUG start codon.
 
 ---
+
+![Translation: Ribosome with A/P/E sites](images/translation-ribosome.svg)
 
 ## 4. Translation Machinery
 

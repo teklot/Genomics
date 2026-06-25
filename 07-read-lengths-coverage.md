@@ -98,6 +98,8 @@ Example:
 
 ### Coverage Distribution
 
+![Coverage depth — reads stacking on reference](images/coverage-depth.svg)
+
 Coverage is not uniform across the genome:
 
 ```
@@ -111,6 +113,8 @@ Regions with:
 - **Low GC content** → often low coverage
 - **Repetitive regions** → may have inflated coverage (multimapped reads)
 - **Centromeres** → near-zero coverage (too repetitive)
+
+![Poisson distribution of coverage at 5×, 15×, 30×](images/poisson-coverage.svg)
 
 ### The Lander-Waterman Model
 

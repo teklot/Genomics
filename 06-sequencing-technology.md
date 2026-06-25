@@ -30,6 +30,8 @@ Physical DNA  →  Sequencer  →  Digital Sequence (FASTQ)
 
 Illumina dominates the market (~80%+ of all sequencing). Understanding its quirks is essential.
 
+![Illumina Sequencing-by-Synthesis cycle](images/sequencing-sbs.svg)
+
 ### How It Works
 
 ```
@@ -62,6 +64,8 @@ Step 4: Base Calling
 | NovaSeq X | 26B | 2×150 bp | 48 hr | Ultra-high throughput |
 
 ### Key Concepts for Illumina
+
+![Paired-end sequencing layout](images/paired-end.svg)
 
 **Paired-end sequencing** reads both ends of each fragment:
 
@@ -97,6 +101,8 @@ Nanopore sequences single molecules in real time.
 - Each base causes a characteristic change in ionic current
 - The current signal is decoded into bases in real time
 ```
+
+![Nanopore sequencing with ionic current signal](images/nanopore-diagram.svg)
 
 ### Key Characteristics
 

@@ -21,6 +21,24 @@ VCF:  chr1  12345  .  G  A  ...  (reference=G, sample=A)
 
 ---
 
+![VCF format — header and records](images/vcf-format.svg)
+
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
+flowchart LR
+    BAM[BAM/CRAM] --> Pileup[samtools mpileup]
+    Pileup --> Call[bcftools call]
+    Call --> Raw[Raw VCF]
+    Raw --> Filter[bcftools filter]
+    Filter --> Annot[SnpEff / VEP]
+    Annot --> Final[Annotated VCF]
+    Final --> Stats[bcftools stats]
+    Final --> Query[bcftools query]
+    Final --> Isec[bcftools isec]
+    style BAM fill:#2b6cb0,color:#fff
+    style Final fill:#276749,color:#fff
+```
+
 ## 1. VCF File Structure
 
 A VCF file has two parts: **header** (meta-information) and **records** (variants).

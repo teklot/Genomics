@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 350" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="13">
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+      <feOffset dx="1" dy="1" result="offsetblur" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2" />
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    
+    <!-- Standard Markers -->
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#dc2626"/>
+    </marker>
+    <marker id="arrowGrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <title>FASTQ 4-Line Record</title>
+
+  <!-- Title -->
+  <text x="425" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#1e293b">FASTQ File Format — 4 Lines Per Read</text>
+
+  <!-- Main Record Area -->
+  <g transform="translate(50, 60)">
+    <!-- Line 1: Header -->
+    <g transform="translate(0, 0)">
+      <rect filter="url(#shadow)" x="0" y="0" width="550" height="45" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+      <text font-family="Consolas, monospace" x="15" y="28" font-size="14" fill="#1e293b">@NB500:1:1101:1117:1967#0/1</text>
+      
+      <path d="M555,22 L585,22" stroke="#3b82f6" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+      <rect filter="url(#shadow)" x="590" y="8" width="160" height="30" rx="6" fill="#f8fafc" stroke="#3b82f6" stroke-width="1"/>
+      <text x="670" y="27" text-anchor="middle" font-size="11" font-weight="bold" fill="#1d4ed8">Header &amp; Metadata</text>
+    </g>
+
+    <!-- Line 2: Sequence -->
+    <g transform="translate(0, 55)">
+      <rect filter="url(#shadow)" x="0" y="0" width="550" height="45" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+      <text font-family="Consolas, monospace" x="15" y="28" font-size="14" fill="#1e293b">ACTGACTGACTGACTGACTGACTGACTGACTG</text>
+      
+      <path d="M555,22 L585,22" stroke="#22c55e" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+      <rect filter="url(#shadow)" x="590" y="8" width="160" height="30" rx="6" fill="#f8fafc" stroke="#22c55e" stroke-width="1"/>
+      <text x="670" y="27" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">Raw Sequence (Bases)</text>
+    </g>
+
+    <!-- Line 3: Separator -->
+    <g transform="translate(0, 110)">
+      <rect x="0" y="0" width="550" height="45" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+      <text font-family="Consolas, monospace" x="15" y="28" font-size="14" fill="#64748b">+</text>
+      
+      <path d="M555,22 L585,22" stroke="#cbd5e1" stroke-width="2" fill="none" marker-end="url(#arrowGrey)"/>
+      <rect filter="url(#shadow)" x="590" y="8" width="160" height="30" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="670" y="27" text-anchor="middle" font-size="11" font-weight="bold" fill="#475569">Separator (+)</text>
+    </g>
+
+    <!-- Line 4: Quality -->
+    <g transform="translate(0, 165)">
+      <rect filter="url(#shadow)" x="0" y="0" width="550" height="45" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+      <text font-family="Consolas, monospace" x="15" y="28" font-size="14" fill="#1e293b">IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII</text>
+      
+      <path d="M555,22 L585,22" stroke="#f59e0b" stroke-width="2" fill="none" marker-end="url(#arrowAmber)"/>
+      <rect filter="url(#shadow)" x="590" y="8" width="160" height="30" rx="6" fill="#f8fafc" stroke="#f59e0b" stroke-width="1"/>
+      <text x="670" y="27" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">Quality (Phred+33)</text>
+    </g>
+  </g>
+
+  <!-- Summary box -->
+  <rect x="50" y="295" width="750" height="35" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="425" y="317" text-anchor="middle" font-size="12" fill="#475569">
+    <tspan font-weight="bold">Note:</tspan> FASTQ is typically gzip-compressed (.fastq.gz). The file structure must be divisible by 4.
+  </text>
+</svg>

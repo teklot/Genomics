@@ -20,6 +20,8 @@ CRAM ~ 20–40% smaller than BAM (cloud storage)
 
 ---
 
+![SAM format — 11 required columns](images/sam-format.svg)
+
 ## 1. SAM Format: The Specification
 
 ### Header Section (starts with @)
@@ -130,9 +132,16 @@ Each alignment is binary-encoded for compactness:
 
 ### Size Comparison
 
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
+xychart-beta
+    title "100M reads, 2×150 bp"
+    x-axis ["FASTQ.gz", "SAM", "BAM", "CRAM"]
+    y-axis "Size (GB)" 0 --> 80
+    bar [45, 75, 15, 9]
 ```
-100M reads, 2×150 bp:
 
+```
 FASTQ.gz:  ~45 GB
 SAM:       ~75 GB  (never store)
 BAM:       ~15 GB  (with compression)

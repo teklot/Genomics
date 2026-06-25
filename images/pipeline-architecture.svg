@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 550" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="12">
+  <title>End-to-End Genomics Pipeline Architecture</title>
+
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+      <feOffset dx="1" dy="1" result="offsetblur" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2" />
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    
+    <!-- Standard Markers -->
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#dc2626"/>
+    </marker>
+    <marker id="arrowGrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="390" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">End-to-End Sequencing Pipeline</text>
+
+  <!-- Step 1: Raw Data -->
+  <rect filter="url(#shadow)" x="40" y="50" width="130" height="60" rx="8" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+  <text x="105" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#be185d">1. Raw Data</text>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="105" y="95" text-anchor="middle" font-size="10" fill="#475569">FASTQ (R1 + R2)</text>
+
+  <path d="M170,80 L200,80" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- Step 2: QC -->
+  <rect filter="url(#shadow)" x="210" y="50" width="130" height="60" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="275" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#b45309">2. Quality Control</text>
+  <text x="275" y="95" text-anchor="middle" font-size="10" fill="#475569">FastQC + fastp</text>
+
+  <path d="M340,80 L370,80" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- Step 3: Alignment -->
+  <rect filter="url(#shadow)" x="380" y="50" width="130" height="60" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+  <text x="445" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#1d4ed8">3. Alignment</text>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="445" y="95" text-anchor="middle" font-size="10" fill="#475569">BWA-MEM</text>
+
+  <path d="M510,80 L540,80" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- Step 4: Post-Alignment -->
+  <rect filter="url(#shadow)" x="550" y="50" width="180" height="60" rx="8" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="640" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#0369a1">4. Post-Alignment</text>
+  <text x="640" y="95" text-anchor="middle" font-size="10" fill="#475569">Sort + FixMate + MarkDup</text>
+
+  <!-- Branch to BQSR -->
+  <path d="M640,110 L640,140" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- Step 5: BQSR -->
+  <rect filter="url(#shadow)" x="550" y="150" width="180" height="60" rx="8" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="640" y="173" text-anchor="middle" font-size="13" font-weight="bold" fill="#0369a1">5. BQSR</text>
+  <text x="640" y="195" text-anchor="middle" font-size="10" fill="#475569">Base Recalibration</text>
+
+  <path d="M640,210 L640,240" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- Step 6: Variant Calling -->
+  <rect filter="url(#shadow)" x="550" y="250" width="180" height="60" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="640" y="273" text-anchor="middle" font-size="13" font-weight="bold" fill="#15803d">6. Variant Calling</text>
+  <text x="640" y="295" text-anchor="middle" font-size="10" fill="#475569">GATK HaplotypeCaller</text>
+
+  <path d="M640,310 L640,340" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- Step 7: Filter -->
+  <rect filter="url(#shadow)" x="550" y="350" width="180" height="60" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="640" y="373" text-anchor="middle" font-size="13" font-weight="bold" fill="#b45309">7. Filter</text>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="640" y="395" text-anchor="middle" font-size="10" fill="#475569">bcftools filter</text>
+
+  <path d="M640,410 L640,440" stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- Step 8: Annotate -->
+  <rect filter="url(#shadow)" x="550" y="450" width="180" height="60" rx="8" fill="#faf5ff" stroke="#a855f7" stroke-width="2"/>
+  <text x="640" y="473" text-anchor="middle" font-size="13" font-weight="bold" fill="#7e22ce">8. Annotate</text>
+  <text x="640" y="495" text-anchor="middle" font-size="10" fill="#475569">VEP / SnpEff</text>
+
+  <!-- Left side: Outputs -->
+  <rect x="40" y="150" width="130" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="105" y="175" text-anchor="middle" font-size="11" fill="#475569">QC Reports</text>
+
+  <rect x="40" y="210" width="130" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="105" y="235" text-anchor="middle" font-size="11" fill="#475569">BAM / CRAM</text>
+
+  <rect x="40" y="270" width="130" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="105" y="295" text-anchor="middle" font-size="11" fill="#475569">VCF (filtered)</text>
+
+  <rect x="40" y="330" width="130" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="105" y="355" text-anchor="middle" font-size="11" fill="#475569">Annotated VCF</text>
+
+  <!-- Output arrows from pipeline to outputs -->
+  <path d="M210,170 L170,170" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2" fill="none"/>
+  <path d="M210,230 L170,230" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2" fill="none"/>
+  <path d="M210,290 L170,290" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2" fill="none"/>
+  <path d="M210,350 L170,350" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,2" fill="none"/>
+
+  <!-- Cloud/AWS layer -->
+  <rect filter="url(#shadow)" x="40" y="400" width="330" height="120" rx="8" fill="#fefce8" stroke="#eab308" stroke-width="2"/>
+  <text x="205" y="420" text-anchor="middle" font-size="14" font-weight="bold" fill="#a16207">AWS Cloud Infrastructure</text>
+
+  <rect filter="url(#shadow)" x="60" y="435" width="140" height="35" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="130" y="457" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">AWS Batch</text>
+
+  <rect filter="url(#shadow)" x="210" y="435" width="140" height="35" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="280" y="457" text-anchor="middle" font-size="11" font-weight="bold" fill="#1d4ed8">S3 Storage</text>
+
+  <rect filter="url(#shadow)" x="60" y="478" width="140" height="30" rx="6" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="130" y="498" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">EFS Ref Genomes</text>
+
+  <rect filter="url(#shadow)" x="210" y="478" width="140" height="30" rx="6" fill="#fce7f3" stroke="#ec4899" stroke-width="1.5"/>
+  <text x="280" y="498" text-anchor="middle" font-size="11" font-weight="bold" fill="#be185d">ECR Containers</text>
+
+  <path d="M350,492 L415,492" stroke="#94a3b8" stroke-width="1.5" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- Dashboard -->
+  <rect filter="url(#shadow)" x="420" y="460" width="200" height="65" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text x="520" y="483" text-anchor="middle" font-size="14" font-weight="bold" fill="#15803d">Genome Dashboard</text>
+  <text x="520" y="503" text-anchor="middle" font-size="11" fill="#475569">ASP.NET Core + HTMX + Bootstrap</text>
+
+  <!-- User -->
+  <rect x="660" y="475" width="70" height="35" rx="17" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+  <text x="695" y="497" text-anchor="middle" font-size="12" font-weight="bold" fill="#334155">User</text>
+  <path d="M620,492 L658,492" stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrowGrey)"/>
+
+  <!-- Reference genome arrow -->
+  <path d="M60,135 L60,150" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3,2" fill="none"/>
+  <text x="50" y="145" text-anchor="end" font-size="9" fill="#64748b">ref</text>
+</svg>

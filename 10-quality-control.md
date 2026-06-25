@@ -28,6 +28,8 @@ fastqc sample_R1.fastq.gz sample_R2.fastq.gz
 
 Output: an HTML report + ZIP file with summary metrics.
 
+![FastQC good vs bad quality comparison](images/fastqc-comparison.svg)
+
 ### Key FastQC Modules
 
 | Module | What It Checks | Red Flag |
@@ -254,24 +256,27 @@ MultiQC is essential for any pipeline — it consolidates dozens of QC outputs i
 
 ## 7. QC Decision Tree
 
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#fff3cd','lineColor':'#d69e2e','fontFamily':'Consolas'}}}%%
+flowchart TD
+    F[Raw FASTQ] --> QC[FastQC]
+    QC --> D{"Any FAIL?"}
+    D -->|yes| Trim[Trim + Re-run QC]
+    D -->|no| Skip[Skip trimming]
+    Trim --> P{"Pass now?"}
+    P -->|yes| Align[Align]
+    P -->|no| Adapter{"Adapter\ncontam?"}
+    Adapter -->|yes| TrimA[Auto-detect adapter]
+    Adapter -->|no| Report[Flag for manual review]
+    Skip --> Align
+    Align --> Validate[Validate BAM]
+    Validate --> Done[Done ✓]
+    style F fill:#c05621,color:#fff
+    style Done fill:#276749,color:#fff
+    style D fill:#ecc94b
+    style P fill:#ecc94b
+    style Adapter fill:#ecc94b
 ```
-                    ┌─────────────┐
-                    │  Raw FASTQ  │
-                    └──────┬──────┘
-                           ↓
-                    ┌─────────────┐
-                    │   FastQC    │
-                    └──────┬──────┘
-                           ↓
-                    ┌─────────────┐
-           ┌────────┤  Any FAIL?  ├────────┐
-           │        └─────────────┘        │
-           ↓                               ↓
-    ┌─────────────┐               ┌───────────────┐
-    │   Trim +    │               │  Skip trimming │
-    │  Re-run QC  │               │                │
-    └─────────────┘               └───────┬───────┘
-           ↓                               ↓
     ┌─────────────┐               ┌───────────────┐
     │   Clean?    │               │  Alignment    │
     │   YES → OK  │               │               │

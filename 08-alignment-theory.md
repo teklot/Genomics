@@ -76,6 +76,8 @@ Burrows-Wheeler Transform:
 
 **Analogy:** The FM-index is like a **hash map for substrings** — you can find whether a read exists in the genome without scanning the entire genome.
 
+![Seed-and-Extend alignment algorithm](images/seed-and-extend.svg)
+
 ### Seed-and-Extend
 
 Popularized by BLAST, used by Minimap2 and others:
@@ -120,6 +122,8 @@ Aligners use a **scoring matrix**:
 | Gap extend (continue indel) | -1 |
 
 The **optimal alignment** maximizes the score.
+
+![Smith-Waterman dynamic programming matrix](images/smith-waterman.svg)
 
 ### The Smith-Waterman Algorithm
 
@@ -179,6 +183,26 @@ def parse_cigar(cigar: str):
 ---
 
 ## 5. Alignment Flags (SAM FLAG)
+
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
+flowchart LR
+    F[FLAG Decimal] --> B[Binary]
+    B --> P1{"bit 0 (1)?"}
+    B --> P2{"bit 1 (2)?"}
+    B --> P3{"bit 2 (4)?"}
+    B --> P4{"bit 3 (8)?"}
+    B --> P5{"bit 4 (16)?"}
+    B --> P6{"bit 5 (32)?"}
+    P1 -->|yes| R1[read paired]
+    P2 -->|yes| R2[mapped in proper pair]
+    P3 -->|yes| R3[read unmapped]
+    P4 -->|yes| R4[mate unmapped]
+    P5 -->|yes| R5[read reverse strand]
+    P6 -->|yes| R6[mate reverse strand]
+    style F fill:#2b6cb0,color:#fff
+    style B fill:#e8f4f8
+```
 
 The SAM FLAG field is a **bitwise field** encoding details about the alignment:
 

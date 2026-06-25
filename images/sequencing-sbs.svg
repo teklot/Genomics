@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 480" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="13">
+  <title>Illumina Sequencing by Synthesis</title>
+
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+      <feOffset dx="1" dy="1" result="offsetblur" />
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2" />
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    
+    <!-- Standard Markers -->
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#3b82f6"/>
+    </marker>
+    <marker id="arrowAmber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#f59e0b"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#22c55e"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#dc2626"/>
+    </marker>
+    <marker id="arrowGrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="325" y="30" text-anchor="middle" font-size="18" font-weight="bold" fill="#1e293b">Illumina Sequencing-by-Synthesis (SBS)</text>
+
+  <!-- High-level Steps -->
+  <g transform="translate(0, 20)">
+    <g transform="translate(40, 40)">
+      <rect filter="url(#shadow)" x="0" y="0" width="160" height="55" rx="8" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+      <text x="80" y="25" text-anchor="middle" font-size="12" font-weight="bold" fill="#1d4ed8">1. Library Prep</text>
+      <text x="80" y="42" text-anchor="middle" font-size="10" fill="#475569">Fragment DNA + Adaptors</text>
+    </g>
+
+    <path d="M200,67 L230,67" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGrey)"/>
+
+    <g transform="translate(240, 40)">
+      <rect filter="url(#shadow)" x="0" y="0" width="160" height="55" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+      <text x="80" y="25" text-anchor="middle" font-size="12" font-weight="bold" fill="#b45309">2. Cluster Gen.</text>
+      <text x="80" y="42" text-anchor="middle" font-size="10" fill="#475569">Bridge Amplification</text>
+    </g>
+
+    <path d="M400,67 L430,67" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGrey)"/>
+
+    <g transform="translate(440, 40)">
+      <rect filter="url(#shadow)" x="0" y="0" width="160" height="55" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+      <text x="80" y="25" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">3. SBS Sequencing</text>
+      <text x="80" y="42" text-anchor="middle" font-size="10" fill="#475569">Massively Parallel</text>
+    </g>
+  </g>
+
+  <!-- Cycle Detail Section -->
+  <g transform="translate(40, 140)">
+    <rect filter="url(#shadow)" x="0" y="0" width="570" height="190" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+    <text x="285" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#1e293b">Inside One Sequencing Cycle</text>
+
+    <!-- Cycle Steps -->
+    <g transform="translate(30, 50)">
+      <rect filter="url(#shadow)" x="0" y="0" width="120" height="45" rx="6" fill="#fce7f3" stroke="#ec4899" stroke-width="1.5"/>
+      <text x="60" y="18" text-anchor="middle" font-size="11" font-weight="bold" fill="#be185d">Add Nucleotide</text>
+      <text x="60" y="32" text-anchor="middle" font-size="9" fill="#64748b">Fluorescent + Blocked</text>
+
+      <path d="M120,22 L140,22" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGrey)"/>
+
+      <rect filter="url(#shadow)" x="150" y="0" width="110" height="45" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+      <text x="205" y="18" text-anchor="middle" font-size="11" font-weight="bold" fill="#b45309">Wash</text>
+      <text x="205" y="32" text-anchor="middle" font-size="9" fill="#64748b">Remove Unbound</text>
+
+      <path d="M260,22 L280,22" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGrey)"/>
+
+      <rect filter="url(#shadow)" x="290" y="0" width="110" height="45" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="345" y="18" text-anchor="middle" font-size="11" font-weight="bold" fill="#1d4ed8">Image</text>
+      <text x="345" y="32" text-anchor="middle" font-size="9" fill="#64748b">Laser Excitation</text>
+
+      <path d="M400,22 L420,22" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGrey)"/>
+
+      <rect filter="url(#shadow)" x="430" y="0" width="110" height="45" rx="6" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
+      <text x="485" y="18" text-anchor="middle" font-size="11" font-weight="bold" fill="#15803d">Cleave</text>
+      <text x="485" y="32" text-anchor="middle" font-size="9" fill="#64748b">Ready for Next</text>
+
+      <!-- Feedback Arrow -->
+      <path d="M485,45 C485,75 60,75 60,45" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowGrey)"/>
+      <text x="270" y="85" text-anchor="middle" font-size="12" font-weight="bold" fill="#64748b">Repeat × 150 cycles</text>
+    </g>
+  </g>
+
+  <!-- Flow Cell Surface -->
+  <g transform="translate(40, 350)">
+    <rect filter="url(#shadow)" x="0" y="0" width="570" height="110" rx="10" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="2"/>
+    <text x="15" y="25" font-size="13" font-weight="bold" fill="#0369a1">Flow Cell Surface (Lanes)</text>
+    <text x="555" y="25" text-anchor="end" font-size="10" fill="#64748b" font-style="italic">Millions of clusters per lane</text>
+
+    <g transform="translate(20, 45)">
+      <rect filter="url(#shadow)" x="0" y="0" width="120" height="50" rx="6" fill="#bae6fd" stroke="#38bdf8" stroke-width="1.5"/>
+      <text x="60" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">Lane 1</text>
+      
+      <rect filter="url(#shadow)" x="135" y="0" width="120" height="50" rx="6" fill="#bae6fd" stroke="#38bdf8" stroke-width="1.5"/>
+      <text x="195" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">Lane 2</text>
+      
+      <rect filter="url(#shadow)" x="270" y="0" width="120" height="50" rx="6" fill="#bae6fd" stroke="#38bdf8" stroke-width="1.5"/>
+      <text x="330" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">Lane 3</text>
+      
+      <rect filter="url(#shadow)" x="405" y="0" width="120" height="50" rx="6" fill="#bae6fd" stroke="#38bdf8" stroke-width="1.5"/>
+      <text x="465" y="30" text-anchor="middle" font-size="11" font-weight="bold" fill="#0369a1">Lane 4</text>
+    </g>
+  </g>
+</svg>

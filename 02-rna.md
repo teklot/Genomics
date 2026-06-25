@@ -41,6 +41,8 @@ assert dna_to_rna("ATGCTA") == "AUGCUA"
 
 ---
 
+![Transcription: DNA to RNA](images/transcription.svg)
+
 ## 2. How RNA Is Made: Transcription
 
 RNA is synthesized from a DNA template by the enzyme **RNA polymerase**.
@@ -96,6 +98,8 @@ Pre-mRNA:   [Exon 1] - [Intron] - [Exon 2] - [Intron] - [Exon 3]
                                               ↓
 Mature mRNA:  5'-CAP-[Exon 1]-[Exon 2]-[Exon 3]-AAAAA...-3'
 ```
+
+![RNA Splicing — removing introns](images/splicing.svg)
 
 ### Splicing — Removing Introns
 

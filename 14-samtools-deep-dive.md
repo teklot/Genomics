@@ -320,6 +320,25 @@ samtools view aligned.bam | awk '{print $1, $6}' | grep "M" | wc -l
 
 ### Full Alignment Pipeline
 
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
+flowchart LR
+    R1[FASTQ R1] --> BWA
+    R2[FASTQ R2] --> BWA
+    BWA[bwa mem] --> Sort[samtools sort]
+    Sort --> Index[samtools index]
+    Sort --> Flag[samtools flagstat]
+    Sort --> Fix[samtools fixmate]
+    Fix --> Mark[samtools markdup]
+    Mark --> Index2[samtools index]
+    Mark --> Depth[samtools depth]
+    Mark --> Pileup[samtools mpileup]
+    style Index fill:#e8f4f8
+    style Index2 fill:#e8f4f8
+    style BWA fill:#2b6cb0,color:#fff
+    style Mark fill:#276749,color:#fff
+```
+
 ```bash
 REF=hg38.fa
 SAMPLE=sample

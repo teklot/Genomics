@@ -52,6 +52,8 @@ For genomic analysis, this means:
 
 ---
 
+![Chromosome Anatomy](images/chromosome-anatomy.svg)
+
 ## 2. Chromosome Structure
 
 A chromosome is not just a long DNA string. It has:
@@ -115,6 +117,8 @@ File       = Gene       (~1–100 KB)
 | **Total genes** | ~60,000 |
 
 That's only ~1.5% of the genome that codes for proteins.
+
+![Gene Structure: promoter, exons, introns](images/gene-structure.svg)
 
 ### Gene Structure
 

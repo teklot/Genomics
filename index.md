@@ -19,11 +19,11 @@
 
 | # | File | Prerequisites | Est. Hours |
 |---|------|---------------|------------|
-| 01 | `01-dna.md` | None | 8–12 |
-| 02 | `02-rna.md` | 01 | 6–10 |
-| 03 | `03-genes-chromosomes.md` | 01–02 | 8–12 |
-| 04 | `04-central-dogma.md` | 01–03 | 10–14 |
-| 05 | `05-mutations-genetics.md` | 01–04 | 10–14 |
+| 01 | [`01-dna.md`](01-dna.md) | None | 8–12 |
+| 02 | [`02-rna.md`](02-rna.md) | 01 | 6–10 |
+| 03 | [`03-genes-chromosomes.md`](03-genes-chromosomes.md) | 01–02 | 8–12 |
+| 04 | [`04-central-dogma.md`](04-central-dogma.md) | 01–03 | 10–14 |
+| 05 | [`05-mutations-genetics.md`](05-mutations-genetics.md) | 01–04 | 10–14 |
 
 **Phase total: 42–62 hours**
 
@@ -37,11 +37,11 @@
 
 | # | File | Prerequisites | Est. Hours |
 |---|------|---------------|------------|
-| 06 | `06-sequencing-technology.md` | 01–05 | 10–14 |
-| 07 | `07-read-lengths-coverage.md` | 01–05 | 8–12 |
-| 08 | `08-alignment-theory.md` | 06–07 | 14–20 |
-| 09 | `09-quality-scores.md` | 06–07 | 6–10 |
-| 10 | `10-quality-control.md` | 06–09 | 8–12 |
+| 06 | [`06-sequencing-technology.md`](06-sequencing-technology.md) | 01–05 | 10–14 |
+| 07 | [`07-read-lengths-coverage.md`](07-read-lengths-coverage.md) | 01–05 | 8–12 |
+| 08 | [`08-alignment-theory.md`](08-alignment-theory.md) | 06–07 | 14–20 |
+| 09 | [`09-quality-scores.md`](09-quality-scores.md) | 06–07 | 6–10 |
+| 10 | [`10-quality-control.md`](10-quality-control.md) | 06–09 | 8–12 |
 
 **Phase total: 46–68 hours**
 
@@ -55,11 +55,11 @@
 
 | # | File | Prerequisites | Est. Hours |
 |---|------|---------------|------------|
-| 11 | `11-fasta-fastq.md` | 06–10 | 10–14 |
-| 12 | `12-sam-bam-cram.md` | 06–11 | 12–16 |
-| 13 | `13-vcf-bcf.md` | 06–11 | 10–14 |
-| 14 | `14-samtools-deep-dive.md` | 12 | 12–16 |
-| 15 | `15-bcftools-deep-dive.md` | 13–14 | 10–14 |
+| 11 | [`11-fasta-fastq.md`](11-fasta-fastq.md) | 06–10 | 10–14 |
+| 12 | [`12-sam-bam-cram.md`](12-sam-bam-cram.md) | 06–11 | 12–16 |
+| 13 | [`13-vcf-bcf.md`](13-vcf-bcf.md) | 06–11 | 10–14 |
+| 14 | [`14-samtools-deep-dive.md`](14-samtools-deep-dive.md) | 12 | 12–16 |
+| 15 | [`15-bcftools-deep-dive.md`](15-bcftools-deep-dive.md) | 13–14 | 10–14 |
 
 **Phase total: 54–74 hours**
 
@@ -73,10 +73,10 @@
 
 | # | File | Prerequisites | Est. Hours |
 |---|------|---------------|------------|
-| 16 | `16-nextflow-dsl2.md` | 10–15, Linux | 16–24 |
-| 17 | `17-containers-bioinformatics.md` | Linux, Docker basics | 10–14 |
-| 18 | `18-aws-genomics.md` | Linux, basic networking | 14–20 |
-| 19 | `19-pipeline-integration.md` | 16–18 | 12–18 |
+| 16 | [`16-nextflow-dsl2.md`](16-nextflow-dsl2.md) | 10–15, Linux | 16–24 |
+| 17 | [`17-containers-bioinformatics.md`](17-containers-bioinformatics.md) | Linux, Docker basics | 10–14 |
+| 18 | [`18-aws-genomics.md`](18-aws-genomics.md) | Linux, basic networking | 14–20 |
+| 19 | [`19-pipeline-integration.md`](19-pipeline-integration.md) | 16–18 | 12–18 |
 
 **Phase total: 52–76 hours**
 
@@ -90,7 +90,7 @@
 
 | # | File | Prerequisites | Est. Hours |
 |---|------|---------------|------------|
-| 20 | `20-portfolio-career.md` | All prior | 60–100 |
+| 20 | [`20-portfolio-career.md`](20-portfolio-career.md) | All prior | 60–100 |
 
 **Phase total: 60–100 hours**
 

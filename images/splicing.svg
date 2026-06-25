@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 300" font-family="Inter, system-ui, -apple-system, sans-serif" font-size="13">
+  <title>RNA Splicing: Removing Introns</title>
+
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.1" />
+    </filter>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3b82f6" />
+    </marker>
+    <marker id="arrowAmber" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f59e0b" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22c55e" />
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#dc2626" />
+    </marker>
+    <marker id="arrowGrey" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="325" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e293b">RNA Splicing — Removing Introns</text>
+
+  <!-- Pre-mRNA -->
+  <text x="50" y="55" font-size="13" font-weight="bold" fill="#b45309">Pre-mRNA:</text>
+
+  <rect filter="url(#shadow)" x="50" y="65" width="540" height="40" rx="6" fill="#fefce8" stroke="#f59e0b" stroke-width="2"/>
+
+  <rect filter="url(#shadow)" x="58" y="70" width="70" height="30" rx="4" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="93" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">Exon 1</text>
+
+  <rect filter="url(#shadow)" x="136" y="70" width="90" height="30" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,2"/>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="181" y="90" text-anchor="middle" font-size="12" fill="#b45309">Intron 1</text>
+
+  <rect filter="url(#shadow)" x="234" y="70" width="70" height="30" rx="4" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="269" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">Exon 2</text>
+
+  <rect filter="url(#shadow)" x="312" y="70" width="90" height="30" rx="4" fill="#fef3c7" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,2"/>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="357" y="90" text-anchor="middle" font-size="12" fill="#b45309">Intron 2</text>
+
+  <rect filter="url(#shadow)" x="410" y="70" width="70" height="30" rx="4" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="445" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">Exon 3</text>
+
+  <rect filter="url(#shadow)" x="488" y="70" width="90" height="30" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="533" y="90" text-anchor="middle" font-size="12" font-weight="bold" fill="#4338ca">3' UTR</text>
+
+  <!-- Arrow indicating splicing -->
+  <path d="M325,108 C325,120 325,133 325,145" stroke="#f59e0b" stroke-width="3" fill="none" marker-end="url(#arrowAmber)"/>
+  <text x="450" y="130" font-size="12" font-weight="bold" fill="#b45309">Splicing (Spliceosome)</text>
+
+  <!-- Mature mRNA -->
+  <text x="50" y="165" font-size="13" font-weight="bold" fill="#15803d">Mature mRNA:</text>
+
+  <rect filter="url(#shadow)" x="165" y="175" width="320" height="40" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+
+  <rect filter="url(#shadow)" x="173" y="180" width="70" height="30" rx="4" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="208" y="200" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">Exon 1</text>
+
+  <rect filter="url(#shadow)" x="245" y="180" width="70" height="30" rx="4" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="280" y="200" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">Exon 2</text>
+
+  <rect filter="url(#shadow)" x="317" y="180" width="70" height="30" rx="4" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <text font-family="Consolas, 'Liberation Mono', monospace" x="352" y="200" text-anchor="middle" font-size="12" font-weight="bold" fill="#15803d">Exon 3</text>
+
+  <rect filter="url(#shadow)" x="389" y="180" width="88" height="30" rx="4" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+  <text x="433" y="200" text-anchor="middle" font-size="12" font-weight="bold" fill="#4338ca">3' UTR</text>
+
+  <!-- Scissors illustration -->
+  <text x="181" y="118" text-anchor="middle" font-size="14" fill="#ef4444">✂</text>
+  <text x="357" y="118" text-anchor="middle" font-size="14" fill="#ef4444">✂</text>
+
+  <!-- Alternative Splicing -->
+  <text x="50" y="240" font-size="13" font-weight="bold" fill="#1e293b">Alternative Splicing:</text>
+  <text x="50" y="258" font-size="12" fill="#475569">One gene can produce multiple mRNA variants by including/excluding different exons.</text>
+
+  <rect filter="url(#shadow)" x="50" y="270" width="540" height="24" rx="4" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="325" y="286" text-anchor="middle" font-size="11" fill="#475569">Analogy: compile-time feature flags — same source, different executables</text>
+</svg>

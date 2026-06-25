@@ -87,6 +87,8 @@ samtools faidx genome.fa chr1:1000000-1000100
 
 ### Structure
 
+![FASTQ 4-line record with annotations](images/fastq-record.svg)
+
 A FASTQ record has **4 lines per read**:
 
 ```

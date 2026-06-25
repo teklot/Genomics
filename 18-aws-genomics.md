@@ -30,6 +30,8 @@ Cloud (AWS):    Use 500 servers for 8 hours, pay for 8 hours.
 
 ---
 
+![AWS Genomics Architecture](images/aws-genomics.svg)
+
 ## 2. Core Services
 
 ### Amazon S3 — Storage
@@ -45,6 +47,21 @@ aws s3 cp old.bam s3://genomics-bucket/ --storage-class GLACIER
 
 # Lifecycle policy (automate tiering)
 # S3 → S3-IA (30 days) → Glacier (90 days) → Deep Archive (365 days)
+
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
+flowchart LR
+    Raw[S3 Standard\nFASTQ] --> IA[S3 IA\nBAM alignments]
+    IA --> Glacier[S3 Glacier\nOld BAM/CRAM]
+    Glacier --> Deep[S3 Deep Archive\nProject archive]
+    Raw -->|after 30d| IA
+    IA -->|after 90d| Glacier
+    Glacier -->|after 365d| Deep
+    style Raw fill:#2b6cb0,color:#fff
+    style Deep fill:#742a2a,color:#fff
+    style IA fill:#d69e2e
+    style Glacier fill:#9b2c2c,color:#fff
+```
 ```
 
 **S3 storage strategy:**

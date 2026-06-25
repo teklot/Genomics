@@ -101,6 +101,40 @@ Your portfolio project is the **single most important artifact** for landing a h
 
 ### Database Schema
 
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
+erDiagram
+    Samples ||--o{ Variants : has
+    Samples {
+        int Id PK
+        string SampleId UK
+        string Status
+        datetime CreatedAt
+        datetime CompletedAt
+        float Coverage
+        int TotalReads
+        float MappedPct
+        float TiTvRatio
+    }
+    Variants {
+        int Id PK
+        string SampleId FK
+        string Chrom
+        int Pos
+        string Ref
+        string Alt
+        float Qual
+        string Filter
+        string Gene
+        string Effect
+        string Consequence
+        float AfPop
+        int Depth
+        float Vaf
+        string Gt
+    }
+```
+
 ```sql
 CREATE TABLE Samples (
     Id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -619,6 +653,32 @@ Variant Calling, Annotation, Filtering
 ## 10. Year 2 Roadmap
 
 After completing the Year 1 curriculum, you'll have a foundation to specialize:
+
+```mermaid
+%%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
+flowchart LR
+    Y1[Year 1\nFoundation] --> BE[Bioinformatics\nEngineer]
+    Y1 --> PE[Platform\nEngineer]
+    Y1 --> DE[Data\nEngineer]
+    Y1 --> FS[Full-Stack +\nBioinformatics]
+    BE --> GATK[GATK Best Practices]
+    BE --> SV[Structural Variants]
+    BE --> RNA[RNA-seq / scRNA-seq]
+    PE --> K8s[Kubernetes]
+    PE --> Spark[Apache Spark / Hail]
+    PE --> Multi[Multi-cloud]
+    DE --> Graph[Graph DB / Neo4j]
+    DE --> Stream[Stream Processing]
+    DE --> OLAP[OLAP Cohort Queries]
+    FS --> Blazor[Blazor Frontend]
+    FS --> SignalR[Real-time SignalR]
+    FS --> SaaS[Billing / Multi-tenant]
+    style Y1 fill:#2b6cb0,color:#fff
+    style BE fill:#276749,color:#fff
+    style PE fill:#744210,color:#fff
+    style DE fill:#9b2c2c,color:#fff
+    style FS fill:#6b46c1,color:#fff
+```
 
 ```
 Year 2 Options:
