@@ -30,7 +30,21 @@ Physical DNA  →  Sequencer  →  Digital Sequence (FASTQ)
 
 Illumina dominates the market (~80%+ of all sequencing). Understanding its quirks is essential.
 
-![Illumina Sequencing-by-Synthesis cycle](images/sequencing-sbs.svg)
+```
+Three Stages: [1. Library Prep] → [2. Cluster Gen.] → [3. SBS Sequencing]
+                Fragment DNA     Bridge Amplification   Massively Parallel
+                + Adaptors
+
+Inside One Sequencing Cycle (×150 cycles):
+  [Add Nucleotide] → [Wash] → [Image] → [Cleave]
+  (Fluorescent +     (Remove   (Laser    (Ready for
+   blocked dNTPs)     unbound)  excite)    next cycle)
+         ↓
+  Repeat for each base position
+
+Flow Cell: [Lane 1] [Lane 2] [Lane 3] [Lane 4] ...
+           (Millions of clusters per lane)
+```
 
 ### How It Works
 
@@ -65,14 +79,22 @@ Step 4: Base Calling
 
 ### Key Concepts for Illumina
 
-![Paired-end sequencing layout](images/paired-end.svg)
+```
+  [Adapter]─┤                                     ├─[Adapter]
+            │  Read 1 (150 bp) →                  │
+            │                    ← Read 2 (150 bp) │
+            └─────────────────────────────────────┘
+            ◄───── Insert Size (350 bp) ──────────→
+            ◄─ Gap (50 bp) ─→
+            Gap = Insert - (R1 + R2)
+```
 
 **Paired-end sequencing** reads both ends of each fragment:
 
 ```
 Fragment:  ┌──────────────────────────────────────┐
            │ 150 bp              150 bp           │
-Read 1:    └────────────────────►                 │
+Read 1:    └────────────────────→                 │
 Read 2:    ◄────────────────────┘                 │
            └──────────────────────────────────────┘
                 Insert size (variable)
@@ -102,7 +124,26 @@ Nanopore sequences single molecules in real time.
 - The current signal is decoded into bases in real time
 ```
 
-![Nanopore sequencing with ionic current signal](images/nanopore-diagram.svg)
+```
+  cis side (Input DNA)
+  ┌─────────────────────────────────┐
+  │   A ─ T ─ G ─ C ─ A ─ T ─ G    │
+  │              ↓                  │
+  │  ┌─────── Nanopore ───────┐     │
+  ├──│  Biological nanopore   │─────┤ ← Lipid Bilayer Membrane
+  │  │  embedded in membrane  │     │
+  │  └────────────────────────┘     │
+  │              ↓                  │
+  │   Ionic Current (pA) ─~‾~‾~‾   │
+  │   Unique disruption per base    │
+  │              ↓                  │
+  │   Base Caller (Neural Network)  │
+  │   Real-time base calling        │
+  └─────────────────────────────────┘
+  trans side (Output DNA)
+
+Key: Real-time, ultra-long reads, portable (MinION)
+```
 
 ### Key Characteristics
 
@@ -236,7 +277,7 @@ PacBio HiFi whole genome:         ~$2,000–$5,000
 ## Exercises
 
 1. If a NovaSeq S4 flow cell produces 10 billion reads at 2×150 bp, how many gigabases is that? How many 30× human genomes does that cover?
-2. Research: What is the Phred quality score of Illumina RTA4 base calling? How does this compare to older chemistry?
+2. Compare the throughput, read length, and error profiles of Illumina, PacBio, and Nanopore sequencing. Which technology would you choose for: (a) detecting novel splice junctions, (b) assembling a novel genome, (c) finding rare somatic variants?
 3. Why do Nanopore reads have more indels while Illumina has more substitutions?
 4. Calculate: A sequencing lab charges $800 per 30× WGS sample. If a sequencer costs $1M and needs 1 FTE operator at $80k/yr, how many samples must the lab run per year to break even? (Assume $200/sample consumable cost.)
 

@@ -80,20 +80,20 @@ Your portfolio project is the **single most important artifact** for landing a h
                     │  (HTMX)     │
                     └──────┬───────┘
                            │  HTTP / HTML
-                    ┌──────▼───────┐
+                    ┌──────↓───────┐
                     │  ASP.NET     │
                     │  Core Server │
                     └──────┬───────┘
                            │
           ┌────────────────┼────────────────┐
           │                │                │
-   ┌──────▼──────┐  ┌──────▼──────┐  ┌──────▼──────┐
+   ┌──────↓──────┐  ┌──────↓──────┐  ┌──────↓──────┐
    │  S3         │  │  AWS Batch  │  │  SQLite/    │
    │  (FASTQ,    │  │  (Compute)  │  │  PostgreSQL │
    │   BAM, VCF) │  │             │  │  (Metadata) │
    └─────────────┘  └─────────────┘  └─────────────┘
                            │
-                    ┌──────▼───────┐
+                    ┌──────↓───────┐
                     │  Nextflow    │
                     │  Pipeline    │
                     └──────────────┘
@@ -798,7 +798,7 @@ This combination — biology + software + cloud — is rare and highly valued.
 
 ## Next Steps
 
-→ Review any weak areas from `index.md`  
+→ Review any weak areas from `README.md`  
 → Start building the portfolio project  
 → Apply for bioinformatics/platform engineering roles  
 → Begin Year 2 specialization  

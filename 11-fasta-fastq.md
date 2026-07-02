@@ -87,7 +87,12 @@ samtools faidx genome.fa chr1:1000000-1000100
 
 ### Structure
 
-![FASTQ 4-line record with annotations](images/fastq-record.svg)
+```
+@NB500:1:1101:1117:1967#0/1         ← Header & Metadata
+ACTGACTGACTGACTGACTGACTGACTGACTG    ← Raw Sequence (Bases)
++                                   ← Separator
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII    ← Quality (Phred+33)
+```
 
 A FASTQ record has **4 lines per read**:
 

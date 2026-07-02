@@ -76,7 +76,20 @@ Burrows-Wheeler Transform:
 
 **Analogy:** The FM-index is like a **hash map for substrings** — you can find whether a read exists in the genome without scanning the entire genome.
 
-![Seed-and-Extend alignment algorithm](images/seed-and-extend.svg)
+```
+Read:    ACTGACTGACTGACTGACTGACTG
+
+Step 1: Find Seeds (exact k-mer matches)
+         [ACTG] [GACT] [ACTG]  ...more seeds
+
+Reference: ...ACTGTACGTACTGACTGAGCTACTGACTG...
+               [ACTG] [GACT]      [ACTG]
+               seed 1  seed 2     seed 3
+
+Step 2: Extend seeds to full alignment
+  Seed 1: no extension (flanking bases don't match)  ✗
+  Seed 2: extended → full match, best alignment       ✓
+```
 
 ### Seed-and-Extend
 
@@ -123,7 +136,23 @@ Aligners use a **scoring matrix**:
 
 The **optimal alignment** maximizes the score.
 
-![Smith-Waterman dynamic programming matrix](images/smith-waterman.svg)
+```
+Query:  A C T G A C
+Ref:    A C T G A C T
+Scoring: match=+1, mismatch=-4, gap=-6
+
+       A  C  T  G  A  C  T
+   0  0  0  0  0  0  0  0
+A  0  1  0  0  0  1  0  0
+C  0  0  2  0  0  0  1  0
+T  0  0  0  3  0  0  0  1
+G  0  0  0  0  4  0  0  0
+A  0  1  0  0  0  5  0  0
+C  0  0  1  0  0  0  2  0
+
+Traceback: 6→5→4→3→2→1 (diagonal)
+Optimal local alignment: ACTGAC vs ACTGAC (score = 6)
+```
 
 ### The Smith-Waterman Algorithm
 
@@ -241,7 +270,7 @@ def explain_flag(flag: int):
     }
     return [desc for bit, desc in flags.items() if flag & bit]
 
-# 99 = paired + proper-pair + reverse-strand + first-in-pair
+# 99 = paired + proper-pair + mate-reverse + first-in-pair
 assert explain_flag(99) == ["paired", "proper-pair", "mate-reverse", "first-in-pair"]
 ```
 

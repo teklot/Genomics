@@ -28,7 +28,34 @@ fastqc sample_R1.fastq.gz sample_R2.fastq.gz
 
 Output: an HTML report + ZIP file with summary metrics.
 
-![FastQC good vs bad quality comparison](images/fastqc-comparison.svg)
+```
+Per-Sequence Quality Scores:
+  ✓ Good Library                    ✗ Bad Library
+  ┌──────────────────────┐         ┌──────────────────────┐
+  │      ████            │         │   ██        ██       │
+  │    ████████          │         │  ████      ████      │
+  │   ██████████         │         │ ██████    ██████     │
+  │  ████████████        │         │ ██████    ██████     │
+  │ ██████████████       │         │██████    ████████    │
+  │ ██████████████       │         │██████    ████████    │
+  │████████████████      │         │██████    ████████    │
+  │████████████████      │         │██████    ████████    │
+  │████████████████      │         │██████    ████████    │
+  └──────────────────────┘         └──────────────────────┘
+  Peak at Q38 (single peak)        Two peaks = contamination!
+
+GC Content Distribution:
+  ✓ Normal GC Content              ✗ Contamination
+  ┌──────────────────────┐         ┌──────────────────────┐
+  │        ██            │         │   ██         ██      │
+  │       ████           │         │  ████       ████     │
+  │       ████           │         │ ██████     ██████    │
+  │      ██████          │         │ ██████     ██████    │
+  │     ████████         │         │████████   ████████   │
+  │    ██████████        │         │████████   ████████   │
+  └──────────────────────┘         └──────────────────────┘
+  Single peak ~41%                  Two peaks = different source
+```
 
 ### Key FastQC Modules
 
@@ -277,20 +304,6 @@ flowchart TD
     style P fill:#ecc94b
     style Adapter fill:#ecc94b
 ```
-    ┌─────────────┐               ┌───────────────┐
-    │   Clean?    │               │  Alignment    │
-    │   YES → OK  │               │               │
-    │   NO →      │               └───────┬───────┘
-    │  Discard    │                       ↓
-    └─────────────┘               ┌───────────────┐
-                                  │   Mark Dupes  │
-                                  │   + Stats     │
-                                  └───────┬───────┘
-                                          ↓
-                                  ┌───────────────┐
-                                  │  Ready for VC │
-                                  └───────────────┘
-```
 
 ---
 
@@ -331,7 +344,7 @@ multiqc . -o final_qc/
 
 1. Run FastQC on a test FASTQ file. Identify which modules pass/warn/fail.
 2. If FastQC shows adapter content at 8% in R2 but 1% in R1, what might be happening?
-3. Write a script that reads a FastQC ZIP file and extracts the per-base quality scores programmatically.
+3. Write a bash pipeline that runs FastQC on a FASTQ file, then extracts key metrics (total sequences, %GC, Q20/Q30 pass rates) from the HTML/text output using grep or awk.
 4. You see a GC content plot with two peaks at 35% and 65%. What's the likely explanation? What would you do next?
 5. Research: What is **optical duplication** on patterned flow cells? How does it differ from PCR duplication?
 

@@ -41,7 +41,31 @@ assert dna_to_rna("ATGCTA") == "AUGCUA"
 
 ---
 
-![Transcription: DNA to RNA](images/transcription.svg)
+### Transcription Diagram
+
+```
+     DNA Coding Strand (non-template)
+  5' ── A ─ T ─ G ─ C ─ A ─ C ─ T ─ G ─ A ─ T ─ C ─ G ── 3'
+      |   |   |   |   |   |   |   |   |   |   |   |
+     ══ ══ ══ ══ ══ ══ ══ ══ ══ ══ ══ ══   (base pairs)
+      |   |   |   |   |   |   |   |   |   |   |   |
+  3' ── T ─ A ─ C ─ G ─ T ─ G ─ A ─ C ─ T ─ A ─ G ─ C ── 5'
+     DNA Template Strand (read by polymerase)
+                        ┌─────────┐
+                        │ RNA Pol │──> 5'
+                        └─────────┘
+                              ↓
+  5' ── A ─ U ─ G ─ C ─ A ─ C ─ U ─ G ─ A ─ U ─ C ─ G ── 3'
+              RNA Being Synthesized  (U replaces T)
+```
+
+| Base Pairing in Transcription |     |
+|------------------------------|-----|
+| DNA A ⇔ U RNA                | DNA T ⇔ A RNA |
+| DNA G ⇔ C RNA                | DNA C ⇔ G RNA |
+| *mRNA is complementary to the template strand* |     |
+
+**SWE Analogy:** DNA Coding Strand = source file, RNA = intermediate build artifact (U replaces T like a transpiler step).
 
 ## 2. How RNA Is Made: Transcription
 
@@ -94,14 +118,36 @@ Before mRNA is ready for translation, it undergoes processing in eukaryotes:
 ```
 Pre-mRNA:   [Exon 1] - [Intron] - [Exon 2] - [Intron] - [Exon 3]
                                               ↓
-               5' Cap ← Splicing → Poly-A Tail
+                5' Cap ← Splicing → Poly-A Tail
                                               ↓
 Mature mRNA:  5'-CAP-[Exon 1]-[Exon 2]-[Exon 3]-AAAAA...-3'
 ```
 
-![RNA Splicing — removing introns](images/splicing.svg)
+### Splicing Diagram
 
-### Splicing — Removing Introns
+```
+Pre-mRNA:
+ ┌────────┐  ┌──────────┐  ┌────────┐  ┌──────────┐  ┌────────┐  ┌──────┐
+ │ Exon 1 │  │ Intron 1 │  │ Exon 2 │  │ Intron 2 │  │ Exon 3 │  │3' UTR│
+ └────────┘  └──────────┘  └────────┘  └──────────┘  └────────┘  └──────┘
+       ✂───────────✂         ✂───────────✂
+       │                        │
+       └────────────────────────┘
+                    ↓
+          Splicing (Spliceosome)
+
+Mature mRNA:
+ ┌────────┐  ┌────────┐  ┌────────┐  ┌──────┐
+ │ Exon 1 │  │ Exon 2 │  │ Exon 3 │  │3' UTR│
+ └────────┘  └────────┘  └────────┘  └──────┘
+
+Alternative Splicing:
+One gene → multiple mRNA variants (compile-time feature flags)
+  [E1]─[E2]─[E3]─[E4]
+     → E1-E2-E4  (skip E3)
+     → E1-E3-E4  (skip E2)
+     → E1-E2-E3-E4 (full length)
+```
 
 **Introns** are non-coding regions; **exons** are coding.
 
@@ -115,13 +161,6 @@ mature_mrna = "".join(pre_mrna[s:e] for s, e in exon_regions)
 ```
 
 **Alternative splicing** is a key concept: one gene can produce multiple different mRNA transcripts, and therefore multiple different proteins — like compile-time feature flags.
-
-```
-Pre-mRNA: [E1]-[E2]-[E3]-[E4]
-    → Splice variant A: E1-E2-E4 (skips E3)
-    → Splice variant B: E1-E3-E4 (skips E2)
-    → Splice variant C: E1-E2-E3-E4 (full length)
-```
 
 ---
 

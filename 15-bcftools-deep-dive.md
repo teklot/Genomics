@@ -116,15 +116,7 @@ bcftools filter -i 'INFO/ANN ~ "missense|nonsense|frameshift|splice"' \
 
 ### Expression Functions
 
-```python
-# BCFtools filter expressions support:
-#   Mathematical: +, -, *, /, ^
-#   Comparison: ==, !=, <, >, <=, >=
-#   Logical: &&, ||, !
-#   String: ~ (regex), = , !=
-#   Functions: min(), max(), sum(), mean(), abs()
-#   Type checks: type(INFO/AF) == "Float"
-```
+
 
 ---
 

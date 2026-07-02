@@ -362,7 +362,7 @@ docker images biocontainers/bwa
 2. Convert the Dockerfile to a Singularity definition file.
 3. Set up a GitHub Actions workflow that builds and pushes the container to GitHub Container Registry on tags.
 4. Run a Nextflow pipeline using containers instead of local tools. Compare execution time.
-5. Research: What is **Conda/Bioconda** and how does it compare to Docker for bioinformatics?
+5. Compare **Docker** and **Singularity/Apptainer**. Why would an HPC cluster prefer Singularity over Docker? What security concerns does each address?
 
 ---
 

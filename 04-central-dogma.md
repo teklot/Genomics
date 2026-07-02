@@ -22,7 +22,38 @@ Source Code  →  Build Artifact  →  Executable Binary
 
 ---
 
-![Central Dogma: DNA → RNA → Protein](images/central-dogma.svg)
+```
+┌─────────────────────────────────────────────────────────────────┐
+│ NUCLEUS (Storage & Transcription)                               │
+│                                                                 │
+│  ┌─────────────────┐      ┌─────────────────────┐               │
+│  │      DNA         │      │     pre-mRNA         │               │
+│  │  Double-stranded │─────→│  Primary transcript  │               │
+│  │  "Source Code"   │      │  "Build w/ comments" │               │
+│  └─────────────────┘      └─────────────────────┘               │
+│         │                         │                             │
+│         │                   SPLICING + Nuclear Export            │
+│         │                         │                             │
+└─────────────────────────┬───────────────────────────────────────┘
+                          │
+┌─────────────────────────↓───────────────────────────────────────┐
+│ CYTOPLASM (Translation)                                         │
+│                                                                 │
+│  ┌─────────────────────┐      ┌─────────────────┐               │
+│  │      mRNA           │      │     Protein       │               │
+│  │  Spliced, capped    │─────→│  Folded peptide   │               │
+│  │  "Optimized Bytecode"│      │  "Executable App" │               │
+│  └─────────────────────┘      └─────────────────┘               │
+│         │                                                       │
+│    TRANSLATION (Ribosome + tRNA)                                │
+└─────────────────────────────────────────────────────────────────┘
+
+SWE Analogy:
+  Source Code  ──Compile──→  AST+Comments  ──Optimize──→  Bytecode  ──Link/Run──→  Binary/Exe
+      (DNA)               (pre-mRNA)                  (mRNA)                   (Protein)
+
+Information flows one way: DNA → RNA → Protein (Crick's original thesis)
+```
 
 ## 1. The Full Pipeline
 
@@ -63,7 +94,7 @@ Step 2: TRANSLATION
                                              │ export
 ┌────────────────────────────────────────────┼────────┐
 │  CYTOPLASM                                │        │
-│                                           ▼        │
+│                                           ↓        │
 │  ┌──────────┐    ┌──────────────┐    ┌──────────┐  │
 │  │  mRNA    │ →  │  Ribosome    │ →  │  Protein │  │
 │  │          │    │  translation │    │  folded  │  │
@@ -87,7 +118,7 @@ AAs:    Met        Ala       Tyr      STOP
 ### The Codon Table
 
 ```
-┌────────┬────────┬────────┬────────┬────────┐
+┌────────┬────────┬────────┬────────┬────────┬────────┐
 │ Codon  │ AA     │ Codon  │ AA     │ Codon  │ AA     │
 ├────────┼────────┼────────┼────────┼────────┼────────┤
 │ UUU    │ Phe    │ UCU    │ Ser    │ UAU    │ Tyr    │
@@ -175,7 +206,29 @@ Finding the correct reading frame is like finding the right entry point in a bin
 
 ---
 
-![Translation: Ribosome with A/P/E sites](images/translation-ribosome.svg)
+```
+                    ┌───────────────────────────┐
+                    │      Ribosome (Large)      │
+                    │  ┌─────┐ ┌─────┐ ┌─────┐  │
+                    │  │  E  │ │  P  │ │  A  │  │
+                    │  │Exit │ │Pepti│ │Amino│  │
+                    │  └─────┘ └─────┘ └─────┘  │
+   5' ── AUG ─── GCU ─── UAC ─── UGA ────────── 3'
+                    │      Ribosome (Small)      │
+                    └───────────────────────────┘
+                          ────→ movement 5' → 3'
+
+  Growing peptide: Met─Ala─Tyr─...
+                       ↑
+            ┌──────────────┐
+            │  tRNA (UAC)  │── Incoming: Tyr
+            └──────────────┘
+
+  The 3-Stage Pipeline (CPU-in-Cell Analogy):
+    A site: new tRNA binds (fetch)
+    P site: peptide held (execute)
+    E site: tRNA exits (write-back)
+```
 
 ## 4. Translation Machinery
 
@@ -184,7 +237,7 @@ Finding the correct reading frame is like finding the right entry point in a bin
                ┌───────────────────────────┐
                │   A site   P site  E site  │
                │  ┌─────┐ ┌─────┐ ┌─────┐ │
-    mRNA  ──►  │  │ UAC │ │ AUG │ │ GCU │ │ ──►  growing
+    mRNA  ──→  │  │ UAC │ │ AUG │ │ GCU │ │ ──→  growing
                │  └─────┘ └─────┘ └─────┘ │      peptide
                └───────────────────────────┘
                        ▲         ▲
@@ -267,7 +320,7 @@ These concepts directly impact how you interpret VCF files and variant annotatio
 1. Write a function that translates an arbitrary DNA sequence to protein (first transcribe DNA→RNA, then translate).
 2. Write a function that finds all open reading frames (ORFs) in a DNA sequence — regions between a start codon (ATG) and a stop codon.
 3. Research: What is the longest protein-coding gene in the human genome? How many amino acids does it encode?
-4. Given the protein sequence `MAYPGSLK`, reverse-translate it to all possible DNA sequences. How many are there?
+4. Given the DNA sequence `ATGGCCGGCGCTTTGA`, transcribe it to RNA, then translate to protein using the codon table. What is the final amino acid sequence?
 
 ---
 

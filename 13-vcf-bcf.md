@@ -21,7 +21,28 @@ VCF:  chr1  12345  .  G  A  ...  (reference=G, sample=A)
 
 ---
 
-![VCF format — header and records](images/vcf-format.svg)
+```
+##fileformat=VCFv4.2
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total Depth">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+#CHROM  POS    ID  REF  ALT  QUAL  FILTER  INFO  FORMAT  SAMPLE
+chr1    10000  .   G    A    100   PASS    DP=50 GT:GQ   0/1:40
+```
+
+| Column   | Description                        |
+|----------|------------------------------------|
+| CHROM    | Chromosome name                    |
+| POS      | Position (1-based)                 |
+| ID       | dbSNP rsID or `.`                  |
+| REF/ALT  | Reference and alternate alleles    |
+| QUAL     | Phred-scaled quality score         |
+| FILTER   | PASS or filter reason              |
+| INFO     | Semi-colon separated metadata      |
+| FORMAT   | Genotype field format              |
+| SAMPLE   | Sample genotype data               |
+
+**Genotype (GT) codes:**
+`0/0` = Hom-Ref, `0/1` = Heterozygous, `1/1` = Hom-Alt, `./.` = No call
 
 ```mermaid
 %%{init:{'theme':'base','themeVariables':{'primaryColor':'#e8f4f8','lineColor':'#2b6cb0','fontFamily':'Consolas'}}}%%
@@ -369,7 +390,7 @@ vcf.close()
 2. Given a VCF with 100 samples, find all variants where exactly one sample has a non-reference genotype.
 3. Filter a VCF to keep only high-quality (QUAL > 30) missense variants with population AF < 1%.
 4. Calculate the Ti/Tv ratio from a VCF. If it's 1.2, what might this indicate about the data?
-5. Research: What is **VQSR** (Variant Quality Score Recalibration)? How does it differ from simple threshold filtering?
+5. What is the difference between **hard filtering** and **soft filtering** in VCF files? When would you use each approach? How do FILTER flags like `PASS` vs `LowQual` affect downstream analysis?
 
 ---
 

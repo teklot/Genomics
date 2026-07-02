@@ -20,7 +20,20 @@ CRAM ~ 20–40% smaller than BAM (cloud storage)
 
 ---
 
-![SAM format — 11 required columns](images/sam-format.svg)
+| # | Col   | Description          | Example         |
+|---|-------|----------------------|-----------------|
+| 1 | QNAME | Read/query ID        | READ01          |
+| 2 | FLAG  | Bitwise flags        | 99              |
+| 3 | RNAME | Reference name       | chr1            |
+| 4 | POS   | 1-based position     | 10000           |
+| 5 | MAPQ  | Mapping quality      | 60              |
+| 6 | CIGAR | Alignment pattern    | 150M            |
+| 7 | RNEXT | Mate reference name  | =               |
+| 8 | PNEXT | Mate position        | 10200           |
+| 9 | TLEN  | Template insert size | 350             |
+|10 | SEQ   | Sequence             | ACTG...         |
+|11 | QUAL  | Quality scores       | IIII...         |
+|12+| TAGs  | Optional tags        | NM:i:0          |
 
 ## 1. SAM Format: The Specification
 

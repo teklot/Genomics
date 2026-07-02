@@ -19,7 +19,28 @@ Sample:    ATGAGTACCCGA
 
 ---
 
-![Mutation Types by Scale](images/mutation-types.svg)
+```
+Reference:  A T G C G A A C C G A T
+
+SNV (single base change):
+  Ref:  A T G C G A A C C G A T
+  Mut:  A T G C G T A C C G A T     (A → T)
+
+Insertion (+4 bp):
+  Ref:  A T G C G A A C C G A T
+  Mut:  A T G C G A T T T T A C C G A T
+
+Deletion (-3 bp):
+  Ref:  A T G C G A A C C G A T
+  Mut:  A T G C ─ ─ ─ C C G A T    (GAA deleted)
+
+Structural Variants (≥50 bp):
+  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
+  │   Deletion   │  │ Duplication  │  │  Inversion   │  │Translocation │
+  │ 50,000 bp    │  │  Block       │  │  Flipped     │  │ Segment moves│
+  │    lost      │  │  repeated    │  │  orientation │  │ between chr  │
+  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘
+```
 
 ## 1. Types of Mutations by Scale
 
@@ -98,7 +119,33 @@ DNA:    A T G  G C T  T A C  T G A
         A T G  G C G  T A C  T G A
         Met    Ala    Tyr    STOP        ← no change (GCU→GCG)
 
-![Frameshift effect on reading frame](images/frameshift-effect.svg)
+```
+Normal (in frame):
+  ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐
+  │ ATG │ │ GCT │ │ TAC │ │ TGA │
+  │ Met │ │ Ala │ │ Tyr │ │Stop │
+  └─────┘ └─────┘ └─────┘ └─────┘
+             ✗  G deleted
+
+Frameshift (-1 bp deletion):
+  ┌─────┐ ┌─────┐ ┌─────┐ ┌─────┐
+  │ ATG │ │ CTA │ │ CTG │ │ AT… │
+  │ Met │ │ Leu │ │ Leu │ │ ??? │
+  └─────┘ └─────┘ └─────┘ └─────┘
+         ←── Everything shifted left by 1 position ──→
+
+Why Frameshifts Are Severe:
+  Codons are read in groups of 3. Deleting 1 base changes every
+  subsequent codon, usually resulting in a completely different
+  protein or a premature Stop codon.
+
+Impact Comparison:
+  ┌─────────────────────┐    ┌─────────────────────┐
+  │  Missense           │    │  Frameshift (Indel) │
+  │  Only 1 amino acid  │    │  All subsequent AAs │
+  │     changes         │    │     change          │
+  └─────────────────────┘    └─────────────────────┘
+```
 
      Frameshift (indel shifts everything):
         A T G  G C T  T A C  T G A
@@ -251,7 +298,7 @@ bcftools isec -C child.vcf.gz mother.vcf.gz father.vcf.gz
 1. Write a function that classifies a mutation as transition or transversion.
 2. Write a function that takes a reference sequence and a variant (position, ref, alt) and returns the mutated protein sequence.
 3. Given a VAF of 0.32, is this more likely germline heterozygous or somatic? Why?
-4. Research: What is the **CpG island** effect? Why are C→T transitions more common in CpG contexts?
+4. Given a set of whole-genome variants with a Ti/Tv ratio of 1.5, what quality issue might this indicate? What Ti/Tv would you expect for a clean WGS dataset?
 
 ---
 

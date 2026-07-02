@@ -25,7 +25,7 @@ Nucleotide = [Phosphate] + [Sugar (deoxyribose)] + [Base]
 ```
         Phosphate
             |
-         Sugar
+          Sugar
             |
           Base
 ```
@@ -71,7 +71,23 @@ Phosphate → Sugar → Phosphate → Sugar → Phosphate → Sugar ...
 
 DNA is **double-stranded**. Two strands run in **opposite directions** (antiparallel) and are held together by **base pairing**.
 
-![DNA Double Helix with base pairing](images/dna-double-helix.svg)
+```
+5'  A ─ T ─ G ─ C ─ T ─ A ─ C ─ G  3'
+    |   |   |   |   |   |   |   |
+    ═══ ═══ ═══ ═══ ═══ ═══ ═══ ═══
+    |   |   |   |   |   |   |   |
+3'  T ─ A ─ C ─ G ─ A ─ T ─ G ─ C  5'
+
+Legend:
+  ═══  A=T (2 H-bonds), G=C (3 H-bonds)
+  ───  Sugar-Phosphate Backbone
+  |    Hydrogen bonds between bases
+
+Strands run antiparallel (5'→3' ⇔ 3'→5')
+Each strand is a full backup of the other
+
+Software Analogy: Two synchronized servers in different data centers
+```
 
 ### Base-Pairing Rules
 
@@ -82,7 +98,7 @@ C pairs with G (3 hydrogen bonds)
 
 ```
 Strand 1: A  T  G  C  T  A  G
-             |  |  |  |  |  |
+          |  |  |  |  |  |  |
 Strand 2: T  A  C  G  A  T  C
 ```
 
@@ -105,7 +121,7 @@ DNA has a **5' (five-prime) end** and a **3' (three-prime) end**. The strands ru
 
 ```
 5' - A T G C - 3'
-    | | | |
+     | | | |
 3' - T A C G - 5'
 ```
 

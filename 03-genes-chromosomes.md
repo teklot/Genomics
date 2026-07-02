@@ -52,7 +52,24 @@ For genomic analysis, this means:
 
 ---
 
-![Chromosome Anatomy](images/chromosome-anatomy.svg)
+```
+           Tel                Tel
+            │                  │
+    p arm ──┤  ┌────────────┐ ├── p arm
+  (Short)   │  │ Centromere │ │   (Short)
+             │  └────────────┘ │
+    q arm ──┤                 ├── q arm
+  (Long)    │                 │   (Long)
+             │                  │
+           Tel                Tel
+          Sister Chromatids
+
+  • p = "petit" (short arm)
+  • q = follows p in alphabet (long arm)
+  • Centromere: region where chromatids join
+  • Telomeres: protective caps at chromosome ends
+  • Humans have 23 pairs of chromosomes
+```
 
 ## 2. Chromosome Structure
 
@@ -84,13 +101,20 @@ Telomere ─ Centromere ─ Telomere
 A **karyotype** is a visual representation of all chromosomes, arranged by size:
 
 ```
-    1       2       3       4       5
-  ┌───┐  ┌───┐  ┌───┐  ┌───┐  ┌───┐
-  │   │  │   │  │   │  │   │  │   │
-  └───┘  └───┘  └───┘  └───┘  └───┘
+     1       2       3       4       5
+   ┌───┐  ┌───┐  ┌───┐  ┌───┐  ┌───┐
+   │   │  │   │  │   │  │   │  │   │
+   └───┘  └───┘  └───┘  └───┘  └───┘
 
-    6       7       8       9       10-12
-  ...
+     6       7       8       9       10
+   ┌───┐  ┌───┐  ┌───┐  ┌───┐  ┌───┐
+   │   │  │   │  │   │  │   │  │   │
+   └───┘  └───┘  └───┘  └───┘  └───┘
+
+     11      12      13      14      15
+   ...
+
+   (Full human karyotype: 22 pairs + X/Y)
 ```
 
 ---
@@ -118,7 +142,26 @@ File       = Gene       (~1–100 KB)
 
 That's only ~1.5% of the genome that codes for proteins.
 
-![Gene Structure: promoter, exons, introns](images/gene-structure.svg)
+```
+Direction of transcription (5' → 3')
+──→────────────────────────────────────────────────────────→
+
+┌──────┐ ┌──────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌────────┐ ┌──────┐ ┌────────┐
+│ Pro- │ │5'UTR │ │ Exon 1 │ │Intron 1│ │ Exon 2 │ │Intron 2│ │ Exon 3│ │3'UTR   │
+│moter │ │      │ │ Coding │ │        │ │ Coding │ │        │ │ Coding│ │        │ Term.
+└──────┘ └──────┘ └────────┘ └────────┘ └────────┘ └────────┘ └────────┘ └──────┘ └────────┘
+                                                                                         
+═══════════════════════════════════════════════════════════════════════════════════════════
+DNA Double Strand
+
+After Splicing (Mature mRNA):
+  [5' UTR] ── [Exon 1] ── [Exon 2] ── [Exon 3] ── [3' UTR]
+  Introns removed. 5' cap and poly-A tail added.
+
+Legend:
+  ███ Exon (coding)    ░░░ Intron (removed)    ▓▓▓ Regulatory
+  SWE Analogy: Gene = Source File, Exons = Included Modules, Introns = Comments/Debug Code
+```
 
 ### Gene Structure
 
@@ -216,7 +259,7 @@ Telomere-to-telomere  →  No gaps         (T2T-CHM13, 2022)
 
 ## Exercises
 
-1. Write a script that downloads the chromosome lengths from UCSC API and prints them sorted.
+1. Look up the length of human chromosome 1 from the GRCh38 genome build. What is it in base pairs? How does it compare to chromosome 21?
 2. Find the genomic coordinates of the **TP53** gene on GRCh38. What are its start/end positions on chr17? How many exons does it have?
 3. Research: What is the difference between a **gene** and a **pseudogene**? Given a DNA sequence, how could you detect if it's a pseudogene?
 4. Write a function that, given a chromosome length and a position, determines whether it's on the p arm or q arm (you'll need to look up centromere positions).

@@ -98,7 +98,25 @@ Example:
 
 ### Coverage Distribution
 
-![Coverage depth — reads stacking on reference](images/coverage-depth.svg)
+```
+Reference: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Reads stacked above (high → medium → low coverage):
+  ████████  █████          ███
+ █████████  ██████         ████
+ █████████  ██████        █████
+ ██████████  ██████
+ ██████████  ███████
+ ███████████  ██████
+ ███████████
+ ████████████
+ ████████████
+────────────────────────────────────────────────────
+  9× depth      4× depth         2× depth
+
+Mean coverage = 5× (each base read ~5 times on average)
+Higher coverage = more confidence in base calls & variant detection
+```
 
 Coverage is not uniform across the genome:
 
@@ -114,7 +132,23 @@ Regions with:
 - **Repetitive regions** → may have inflated coverage (multimapped reads)
 - **Centromeres** → near-zero coverage (too repetitive)
 
-![Poisson distribution of coverage at 5×, 15×, 30×](images/poisson-coverage.svg)
+```
+P(k) = (λ^k × e^(-λ)) / k!    where λ = coverage depth
+
+Coverage distribution widens at lower depths:
+  λ=5×  (low-pass)  → wide spread, ~7% genome with 0× coverage
+  λ=15× (exome)     → narrower,  <1% zero-coverage
+  λ=30× (WGS)       → tight, <0.01% below 10×, 99.9% SNV confidence
+
+Example probabilities:
+  k     λ=5×    λ=15×   λ=30×
+  0     0.007   3e-7    9e-14
+  5     0.175   0.002   0.000
+ 10     0.018   0.048   0.000
+ 15     0.000   0.102   0.001
+ 20     0.000   0.042   0.013
+ 30     0.000   0.000   0.073
+```
 
 ### The Lander-Waterman Model
 
@@ -252,7 +286,7 @@ For paired-end reads, **insert size** is the distance between the two reads on t
 ```
           ← insert size →
           ┌────────────────┐
-Read 1:   └────►            │
+Read 1:   └────→            │
 Read 2:    ◄────────────────┘
 ```
 
@@ -273,8 +307,8 @@ Insert size outliers can indicate structural variants:
 
 1. A NovaSeq S4 flow cell produces 10B reads at 2×150 bp. How many human genomes at 30× can be sequenced on one flow cell?
 2. At 30× coverage, what percentage of the genome has ≥20× coverage? Use the Poisson formula.
-3. Write a script that reads a BAM file (or a simulated coverage file) and reports the percentage of bases at ≥10×, ≥20×, ≥30×.
-4. You need to detect a somatic variant at 5% allele frequency. How many reads must cover the position to have 95% power to detect it? (Hint: use the binomial distribution.)
+3. Write a script that simulates a coverage file (random Poisson-distributed per-base depths with λ=30) and reports the percentage of bases at ≥10×, ≥20×, ≥30×.
+4. At 30× coverage with a Poisson distribution, what is the probability that a given base has zero coverage? How many bases in the human genome (~3.2 Gb) would you expect to have no coverage?
 5. Research: What is **GC bias** and how does it affect coverage? How do library preparation methods try to mitigate it?
 
 ---

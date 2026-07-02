@@ -10,7 +10,44 @@
 
 An integrated genomics pipeline is a **data factory**: raw sequences go in, annotated variants come out, and every step is automated, monitored, and reproducible.
 
-![End-to-end pipeline architecture](images/pipeline-architecture.svg)
+```
+                    ┌──────────────────────────────────────┐
+                    │        END-TO-END PIPELINE           │
+                    │                                      │
+  ┌──────────┐  ┌──↓──────┐  ┌──────────┐  ┌────────────┐ │
+  │1.Raw Data│─→│2.Quality│─→│3.Align-  │─→│4.Post-Align│ │
+  │ FASTQ    │  │Control  │  │ment      │  │Sort/Dedup  │ │
+  │ R1 + R2  │  │FastQC+  │  │BWA-MEM   │  │+ FixMate   │ │
+  └──────────┘  │fastp    │  └──────────┘  └────────────┘ │
+                └─────────┘                                │
+                                                           │
+              ┌──────────┐  ┌──────────┐  ┌────────────┐ │
+              │5. BQSR   │─→│6.Variant │─→│7. Filter   │ │
+              │Base Recal│  │Calling   │  │bcftools    │ │
+              └──────────┘  │GATK HC   │  └────────────┘ │
+                            └──────────┘                  │
+                                     ┌──────────────────┐ │
+                                     │8. Annotate       │ │
+                                     │VEP / SnpEff      │ │
+                                     └──────────────────┘ │
+                    └──────────────────────────────────────┘
+
+  Outputs:  QC Reports → BAM/CRAM → VCF (filtered) → Annotated VCF
+
+  ┌─────────────────────────────────────────────────────────┐
+  │              AWS Cloud Infrastructure                    │
+  │  ┌────────────┐  ┌──────────┐  ┌────────────┐          │
+  │  │ AWS Batch  │  │S3 Storage│  │EFS Ref     │  ECR     │
+  │  │ (Compute)  │  │ (Data)   │  │Genomes     │Containers│
+  │  └────────────┘  └──────────┘  └────────────┘          │
+  └─────────────────────────────────────────────────────────┘
+                           │
+                    ┌──────↓──────┐
+                    │   Genome    │
+                    │  Dashboard  │
+                    │ASP.NET+HTMX │◄──── User
+                    └─────────────┘
+```
 
 ```
 FASTQ → QC → Align → Dedup → BQSR → Call → Filter → Annotate → VCF
@@ -50,12 +87,12 @@ flowchart TD
 ```
 │  └──────────────────────────────────────────────────────────┘ │
 │                     │                                        │
-│  ┌──────────────────▼──────────────────────────────────────┐ │
+│  ┌──────────────────↓──────────────────────────────────────┐ │
 │  │              S3 Output Bucket                            │ │
 │  │  BAM/CRAM, VCF, QC Reports, Logs                        │ │
 │  └──────────────────────────────────────────────────────────┘ │
 │                     │                                        │
-│  ┌──────────────────▼──────────────────────────────────────┐ │
+│  ┌──────────────────↓──────────────────────────────────────┐ │
 │  │         ASP.NET Core + HTMX Dashboard                    │ │
 │  │  • List samples • View QC • Browse variants • Download  │ │
 │  └──────────────────────────────────────────────────────────┘ │
@@ -212,7 +249,7 @@ s3://genomics-bucket/results/
 
 ## 6. Monitoring & Alerting
 
-```python
+```groovy
 # Post-pipeline SNS notification (add to final process)
 process SEND_NOTIFICATION {
     input:
@@ -345,7 +382,7 @@ resource "aws_s3_bucket" "genomics" {
 2. Design the S3 bucket structure for a multi-tenant genomics platform (different projects, samples, and access levels).
 3. Create a Terraform module that deploys the AWS Batch infrastructure for this pipeline.
 4. Implement a "mini pipeline" that runs on 1 sample with chr21 only and validates against a truth VCF.
-5. Research: What is **Nextflow Tower** (or Seqera Platform) and how does it simplify multi-cloud pipeline management?
+5. Design a monitoring dashboard for a production WGS pipeline. What metrics would you track (samples processed, pass/fail rates, cost per sample, runtime)? How would you alert on failures?
 
 ---
 

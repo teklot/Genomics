@@ -17,7 +17,26 @@ Qual:    I I I I I I I I
        Q = 40 → P(error) = 0.0001 (99.99% accurate)
 ```
 
-![Per-base quality distribution — good lane vs bad lane](images/quality-distribution.svg)
+```
+Good Lane:
+  Q40 ████████████████████████████
+  Q30 ████████████████████████████
+  Q20 ████████████████████████████
+  5'  ───────────────────────────→ 3'
+  → All bases in green zone
+
+Bad Lane:
+  Q40 ██████████░░░░░░████████
+  Q30 ███████░░░░░░██████████
+  Q20 ████░░░░░░██████████████
+  5'  ───────────────────────────→ 3'
+  → Quality drops sharply toward 3' end
+
+Typical Illumina 2×150 Cycle:
+  • First ~5 bases: lower quality (template switching noise)
+  • Middle bases: highest quality (Q35–Q40)
+  • Last bases: quality degrades (phasing, dephasing effects)
+```
 
 ---
 
@@ -42,6 +61,8 @@ Where P = probability the base call is incorrect
 | 60 | 0.000001 (0.0001%) | 99.9999% | Maximum (rarely achieved) |
 
 ```python
+import math
+
 def phred_to_error(q: int) -> float:
     return 10 ** (-q / 10)
 
@@ -158,11 +179,7 @@ PacBio:
 
 The Q-score from the base caller tends to be **over-confident**:
 
-```python
-# Empirical vs reported accuracy
-# Reported Q30 → 0.001 predicted error rate
-# Actual error rate at reported Q30: ~0.002–0.005 (2-5× worse)
-```
+
 
 This is why variant callers often recalibrate Q-scores using known truth sets.
 
