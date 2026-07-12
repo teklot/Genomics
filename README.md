@@ -1,6 +1,6 @@
 # Genomics for Software Engineers — Year 1 Curriculum
 
-A progressive, self-contained study guide that builds from molecular biology fundamentals to a deployable cloud genomics portfolio.
+A progressive, self-contained study guide that builds from molecular biology fundamentals to fluency in genomics file formats and CLI tools.
 
 ## Target Audience
 
@@ -15,10 +15,6 @@ A progressive, self-contained study guide that builds from molecular biology fun
 - Run quality control with FastQC and fastp
 - Align reads with BWA and Minimap2
 - Call and filter variants with SAMtools + BCFtools
-- Write and run Nextflow DSL2 workflows
-- Containerize bioinformatics tools with Docker
-- Deploy genomics workloads on AWS (S3, Batch, HealthOmics)
-- Build a portfolio project: ASP.NET Core + HTMX + Bootstrap dashboard backed by a real genomics pipeline on AWS
 
 ## Structure
 
@@ -27,16 +23,13 @@ A progressive, self-contained study guide that builds from molecular biology fun
 | 1 | 1–4 | Molecular Biology for Engineers | `01`–`05` |
 | 2 | 5–8 | Sequencing & Alignment | `06`–`10` |
 | 3 | 9–12 | File Formats & CLI Tools | `11`–`15` |
-| 4 | 13–16 | Workflows & Cloud | `16`–`19` |
-| 5 | 17–20 | Portfolio Project & Career | `20` |
 
-**Total: ~300–450 hours over 20 weeks (~12–15 hrs/week for a working engineer).**
+**Total: ~142–204 hours over 12 weeks (~12–17 hrs/week for a working engineer).**
 
 ## How to Use
 
 1. Read files in numerical order — each is standalone but concepts compound.
 2. Every file has **exercises** — do them.
-3. The final file (`20-portfolio-career.md`) is the capstone: build it, put it on GitHub, and reference it in interviews.
 
 ## Lessons at a Glance
 
@@ -57,11 +50,6 @@ A progressive, self-contained study guide that builds from molecular biology fun
 | 13 | [VCF/BCF Format](13-vcf-bcf.md) | 06–11 | Header, records, genotypes, INFO/FORMAT fields |
 | 14 | [SAMtools Deep Dive](14-samtools-deep-dive.md) | 12 | View, sort, index, flagstat, mpileup |
 | 15 | [BCFtools Deep Dive](15-bcftools-deep-dive.md) | 13–14 | Filter, merge, stats, norm, consensus |
-| 16 | [Nextflow DSL2](16-nextflow-dsl2.md) | 10–15 | Processes, channels, operators, modules, AWS Batch |
-| 17 | [Containers for Bioinformatics](17-containers-bioinformatics.md) | Linux, Docker basics | Dockerfiles, MultiQC, BioContainers, registries |
-| 18 | [AWS for Genomics](18-aws-genomics.md) | 16–17 | S3, Batch, EFS, HealthOmics, Spot instances, VPC |
-| 19 | [Pipeline Integration](19-pipeline-integration.md) | 16–18 | Build a complete WGS pipeline end-to-end |
-| 20 | [Portfolio & Career](20-portfolio-career.md) | All prior | Build & deploy the capstone project, interview prep |
 
 ## Prerequisites
 
@@ -126,37 +114,6 @@ A progressive, self-contained study guide that builds from molecular biology fun
 
 ---
 
-## Phase 4 — Workflows & Cloud (Weeks 13–16)
-
-**Goal:** Automate pipelines at scale using Nextflow, containers, and AWS.
-
-| # | File | Prerequisites | Est. Hours |
-|---|------|---------------|------------|
-| 16 | [`16-nextflow-dsl2.md`](16-nextflow-dsl2.md) | 10–15, Linux | 16–24 |
-| 17 | [`17-containers-bioinformatics.md`](17-containers-bioinformatics.md) | Linux, Docker basics | 10–14 |
-| 18 | [`18-aws-genomics.md`](18-aws-genomics.md) | Linux, basic networking | 14–20 |
-| 19 | [`19-pipeline-integration.md`](19-pipeline-integration.md) | 16–18 | 12–18 |
-
-**Phase total: 52–76 hours**
-
-**Milestone check:** Can you write a Nextflow workflow that runs FastQC → BWA → SAMtools → BCFtools? Can you deploy it on AWS Batch?
-
----
-
-## Phase 5 — Portfolio Project & Career (Weeks 17–20)
-
-**Goal:** Build and deploy a portfolio project that demonstrates all prior skills. Prepare for interviews.
-
-| # | File | Prerequisites | Est. Hours |
-|---|------|---------------|------------|
-| 20 | [`20-portfolio-career.md`](20-portfolio-career.md) | All prior | 60–100 |
-
-**Phase total: 60–100 hours**
-
-**Milestone check:** Do you have a public GitHub repo with a working ASP.NET Core + HTMX + Bootstrap dashboard that shows real genomics pipeline results? Can you walk an interviewer through every layer — DNA → base calls → alignment → variants → visualization?
-
----
-
 ## Total Estimated Time
 
 | Phase | Low | High |
@@ -164,17 +121,15 @@ A progressive, self-contained study guide that builds from molecular biology fun
 | 1 — Molecular Biology | 42 | 62 |
 | 2 — Sequencing & Alignment | 46 | 68 |
 | 3 — File Formats & CLI Tools | 54 | 74 |
-| 4 — Workflows & Cloud | 52 | 76 |
-| 5 — Portfolio & Career | 60 | 100 |
-| **Total** | **254** | **380** |
+| **Total** | **142** | **204** |
 
-Add 20% buffer for review, setup, troubleshooting: **~300–450 hours**.
+Add 20% buffer for review, setup, troubleshooting: **~170–245 hours**.
 
 ---
 
 ## Weekly Schedule (Example)
 
-This curriculum requires **~12–15 hours/week** for a working engineer to finish in 20 weeks.
+This curriculum requires **~14–20 hours/week** for a working engineer to finish in 12 weeks.
 
 | Day | Activity | Time |
 |-----|----------|------|
@@ -184,9 +139,9 @@ This curriculum requires **~12–15 hours/week** for a working engineer to finis
 | Thu | *(off — life, rest, or catch-up)* | — |
 | Fri | Review the week, write a one-page summary | 1 hr |
 | Sat | Deep work — main study block | 4–5 hr |
-| Sun | Portfolio project or catch-up on missed items | 2–3 hr |
+| Sun | Catch-up on missed items or review | 2–3 hr |
 
-**Total: ~11.5–13.5 hrs/week** — adjust the weekend blocks up during heavier phases (sequencing, alignment, cloud).
+**Total: ~14–20 hrs/week** — adjust the weekend blocks up during heavier phases (alignment, file formats).
 
 ---
 
@@ -200,4 +155,3 @@ This curriculum requires **~12–15 hours/week** for a working engineer to finis
 | Python | Codecademy or Real Python |
 | AWS | AWS Skill Builder — free digital courses for Batch, S3, IAM |
 | Docker | Docker's "Get Started" guide |
-| Nextflow | Seqera's Nextflow training (free, 4-part course) |

@@ -35,11 +35,11 @@ Deletion (-3 bp):
   Mut:  A T G C ─ ─ ─ C C G A T    (GAA deleted)
 
 Structural Variants (≥50 bp):
-  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-  │   Deletion   │  │ Duplication  │  │  Inversion   │  │Translocation │
-  │ 50,000 bp    │  │  Block       │  │  Flipped     │  │ Segment moves│
-  │    lost      │  │  repeated    │  │  orientation │  │ between chr  │
-  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘
+  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐
+  │   Deletion    │  │  Duplication  │  │   Inversion   │  │ Translocation │
+  │   50,000 bp   │  │     Block     │  │    Flipped    │  │ Segment moves │
+  │     lost      │  │   repeated    │  │  orientation  │  │  between chr  │
+  └───────────────┘  └───────────────┘  └───────────────┘  └───────────────┘
 ```
 
 ## 1. Types of Mutations by Scale
@@ -140,11 +140,11 @@ Why Frameshifts Are Severe:
   protein or a premature Stop codon.
 
 Impact Comparison:
-  ┌─────────────────────┐    ┌─────────────────────┐
-  │  Missense           │    │  Frameshift (Indel) │
-  │  Only 1 amino acid  │    │  All subsequent AAs │
-  │     changes         │    │     change          │
-  └─────────────────────┘    └─────────────────────┘
+  ┌────────────────────┐    ┌────────────────────┐
+  │      Missense      │    │ Frameshift (Indel) │
+  │ Only 1 amino acid  │    │ All subsequent AAs │
+  │      changes       │    │       change       │
+  └────────────────────┘    └────────────────────┘
 ```
 
      Frameshift (indel shifts everything):
@@ -289,6 +289,7 @@ bcftools stats sample.vcf.gz | grep "TSTV"
 
 # Find de novo mutations (child variant not in parents)
 bcftools isec -C child.vcf.gz mother.vcf.gz father.vcf.gz
+
 ```
 
 ---

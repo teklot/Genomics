@@ -26,30 +26,30 @@ Source Code  →  Build Artifact  →  Executable Binary
 ┌─────────────────────────────────────────────────────────────────┐
 │ NUCLEUS (Storage & Transcription)                               │
 │                                                                 │
-│  ┌─────────────────┐      ┌─────────────────────┐               │
-│  │      DNA         │      │     pre-mRNA         │               │
-│  │  Double-stranded │─────→│  Primary transcript  │               │
-│  │  "Source Code"   │      │  "Build w/ comments" │               │
-│  └─────────────────┘      └─────────────────────┘               │
-│         │                         │                             │
-│         │                   SPLICING + Nuclear Export            │
-│         │                         │                             │
+│  ┌──────────────────────┐      ┌──────────────────────┐         │
+│  │         DNA          │      │       pre-mRNA       │         │
+│  │   Double-stranded    │─────>│  Primary transcript  │         │
+│  │    "Source Code"     │      │ "Build w/ comments"  │         │
+│  └──────────────────────┘      └──────────────────────┘         │
+│            │                             │                      │
+│            │  SPLICING + Nuclear Export  │                      │
+│            │                             │                      │
 └─────────────────────────┬───────────────────────────────────────┘
                           │
 ┌─────────────────────────↓───────────────────────────────────────┐
 │ CYTOPLASM (Translation)                                         │
 │                                                                 │
-│  ┌─────────────────────┐      ┌─────────────────┐               │
-│  │      mRNA           │      │     Protein       │               │
-│  │  Spliced, capped    │─────→│  Folded peptide   │               │
-│  │  "Optimized Bytecode"│      │  "Executable App" │               │
-│  └─────────────────────┘      └─────────────────┘               │
-│         │                                                       │
+│  ┌──────────────────────┐      ┌──────────────────────┐         │
+│  │         mRNA         │      │       Protein        │         │
+│  │   Spliced, capped    │─────>│    Folded peptide    │         │
+│  │ "Optimized Bytecode" │      │   "Executable App"   │         │
+│  └──────────────────────┘      └──────────────────────┘         │
+│            │                                                    │
 │    TRANSLATION (Ribosome + tRNA)                                │
 └─────────────────────────────────────────────────────────────────┘
 
 SWE Analogy:
-  Source Code  ──Compile──→  AST+Comments  ──Optimize──→  Bytecode  ──Link/Run──→  Binary/Exe
+  Source Code  ──Compile──>  AST+Comments  ──Optimize──>  Bytecode  ──Link/Run──>  Binary/Exe
       (DNA)               (pre-mRNA)                  (mRNA)                   (Protein)
 
 Information flows one way: DNA → RNA → Protein (Crick's original thesis)
@@ -84,22 +84,22 @@ Step 2: TRANSLATION
 ### Visualization
 
 ```
-┌──────────────────────────────────────────────────────┐
-│  NUCLEUS                                             │
-│  ┌──────────┐    ┌──────────────┐    ┌──────────┐   │
-│  │   DNA    │ →  │  pre-mRNA    │ →  │  mRNA    │   │
-│  │ source   │    │  (w/ introns)│    │  (spliced)│   │
-│  └──────────┘    └──────────────┘    └─────┬────┘   │
-└────────────────────────────────────────────┼────────┘
-                                             │ export
-┌────────────────────────────────────────────┼────────┐
-│  CYTOPLASM                                │        │
-│                                           ↓        │
-│  ┌──────────┐    ┌──────────────┐    ┌──────────┐  │
-│  │  mRNA    │ →  │  Ribosome    │ →  │  Protein │  │
-│  │          │    │  translation │    │  folded  │  │
-│  └──────────┘    └──────────────┘    └──────────┘  │
-└────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────┐
+│  NUCLEUS                                                       │
+│   ┌──────────────┐    ┌──────────────┐    ┌──────────────┐     │
+│   │     DNA      │    │   pre-mRNA   │    │     mRNA     │     │
+│   │    source    │ →  │ (w/ introns) │ →  │  (spliced)   │     │
+│   └──────────────┘    └──────────────┘    └──────┬───────┘     │
+└──────────────────────────────────────────────────┬─────────────┘
+                                                   │ export
+┌──────────────────────────────────────────────────┼─────────────┐
+│   CYTOPLASM                                      │             │
+│                                                  ↓             │
+│   ┌──────────────┐    ┌──────────────┐    ┌──────────────┐     │
+│   │     mRNA     │    │   Ribosome   │    │   Protein    │     │
+│   │              │ →  │ translation  │ →  │    folded    │     │
+│   └──────────────┘    └──────────────┘    └──────────────┘     │
+└────────────────────────────────────────────────────────────────┘
 ```
 
 ---
@@ -208,15 +208,15 @@ Finding the correct reading frame is like finding the right entry point in a bin
 
 ```
                     ┌───────────────────────────┐
-                    │      Ribosome (Large)      │
+                    │      Ribosome (Large)     │
                     │  ┌─────┐ ┌─────┐ ┌─────┐  │
                     │  │  E  │ │  P  │ │  A  │  │
                     │  │Exit │ │Pepti│ │Amino│  │
                     │  └─────┘ └─────┘ └─────┘  │
    5' ── AUG ─── GCU ─── UAC ─── UGA ────────── 3'
-                    │      Ribosome (Small)      │
+                    │      Ribosome (Small)     │
                     └───────────────────────────┘
-                          ────→ movement 5' → 3'
+                          ────> movement 5' → 3'
 
   Growing peptide: Met─Ala─Tyr─...
                        ↑
@@ -235,10 +235,10 @@ Finding the correct reading frame is like finding the right entry point in a bin
 ```
                     Ribosome
                ┌───────────────────────────┐
-               │   A site   P site  E site  │
-               │  ┌─────┐ ┌─────┐ ┌─────┐ │
-    mRNA  ──→  │  │ UAC │ │ AUG │ │ GCU │ │ ──→  growing
-               │  └─────┘ └─────┘ └─────┘ │      peptide
+               │   A site   P site  E site │
+               │  ┌─────┐ ┌─────┐ ┌─────┐  │
+    mRNA  ──>  │  │ UAC │ │ AUG │ │ GCU │  │ ──>  growing
+               │  └─────┘ └─────┘ └─────┘  │      peptide
                └───────────────────────────┘
                        ▲         ▲
                        │         │
@@ -281,7 +281,7 @@ Quaternary structure: Multiple chains together   (complex)
 
 ```
 ┌───────────────────────────────┬────────────────────────────┐
-│ Biology                       │ Software Engineering        │
+│ Biology                       │ Software Engineering       │
 ├───────────────────────────────┼────────────────────────────┤
 │ DNA                           │ Source code repository     │
 │ Gene                          │ A function / module        │

@@ -2,8 +2,6 @@
 
 **Prerequisites:** `13-vcf-bcf.md`, `14-samtools-deep-dive.md`
 
-**See also:** `16-nextflow-dsl2.md`, `19-pipeline-integration.md`
-
 ---
 
 ## The Big Idea
@@ -44,7 +42,7 @@ bcftools plugin   — Plugins for specialized analysis
 
 ```bash
 # Basic conversions
-bcftools view input.vcf.gz > output.vcf                    # Decompress
+bcftools view input.vcf.gz > output.vcf                     # Decompress
 bcftools view -O z input.vcf > input.vcf.gz                 # Compress
 bcftools view -O b input.vcf > output.bcf                   # VCF → BCF
 bcftools view input.bcf > output.vcf                        # BCF → VCF
@@ -174,14 +172,14 @@ grep "^QUAL" stats.txt   # Quality distribution
 ### Key Metrics from `bcftools stats`
 
 ```
-Number of SNPs:          3,500,000 (expected for WGS)
-Number of indels:          650,000
+Number of SNPs:             3,500,000 (expected for WGS)
+Number of indels:           650,000
 Number of multi-allelic:    50,000
-Ti/Tv ratio:                  2.08
-Number of singletons:     300,000
+Ti/Tv ratio:                2.08
+Number of singletons:       300,000
 Number of homozygous ref:   2,800,000
-Number of heterozygous:      450,000
-Number of homozygous alt:    250,000
+Number of heterozygous:     450,000
+Number of homozygous alt:   250,000
 ```
 
 ---
@@ -430,9 +428,7 @@ snpEff GRCh38.99 ${VCF%.vcf.gz}.filtered.vcf.gz > annotated.vcf.gz
 
 ## Next Steps
 
-→ `16-nextflow-dsl2.md` — Automating the full pipeline with Nextflow  
-→ `17-containers-bioinformatics.md` — Containerizing these tools  
-→ `19-pipeline-integration.md` — End-to-end pipeline design  
+
 
 ---
 

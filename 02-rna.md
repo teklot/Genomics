@@ -44,19 +44,19 @@ assert dna_to_rna("ATGCTA") == "AUGCUA"
 ### Transcription Diagram
 
 ```
-     DNA Coding Strand (non-template)
-  5' ── A ─ T ─ G ─ C ─ A ─ C ─ T ─ G ─ A ─ T ─ C ─ G ── 3'
-      |   |   |   |   |   |   |   |   |   |   |   |
-     ══ ══ ══ ══ ══ ══ ══ ══ ══ ══ ══ ══   (base pairs)
-      |   |   |   |   |   |   |   |   |   |   |   |
-  3' ── T ─ A ─ C ─ G ─ T ─ G ─ A ─ C ─ T ─ A ─ G ─ C ── 5'
-     DNA Template Strand (read by polymerase)
-                        ┌─────────┐
-                        │ RNA Pol │──> 5'
-                        └─────────┘
-                              ↓
-  5' ── A ─ U ─ G ─ C ─ A ─ C ─ U ─ G ─ A ─ U ─ C ─ G ── 3'
-              RNA Being Synthesized  (U replaces T)
+      DNA Coding Strand (non-template)
+   5' ── A ─── T ─── G ─── C ─── A ─── C ─── T ─── G ─── A ─── T ─── C ─── G ── 3'
+       |     |     |     |     |     |     |     |     |     |     |     |
+      ═════ ═════ ═════ ═════ ═════ ═════ ═════ ═════ ═════ ═════ ═════ ═════  (base pairs)
+       |     |     |     |     |     |     |     |     |     |     |     |
+   3' ── T ─── A ─── C ─── G ─── T ─── G ─── A ─── C ─── T ─── A ─── G ─── C ── 5'
+      DNA Template Strand (read by polymerase)
+                                    ┌───────────┐
+                                    │  RNA Pol  │────> 5'
+                                    └───────────┘
+                                          ↓
+   5' ── A ─── U ─── G ─── C ─── A ─── C ─── U ─── G ─── A ─── U ─── C ─── G ── 3'
+                     RNA Being Synthesized (U replaces T)
 ```
 
 | Base Pairing in Transcription |     |
@@ -127,26 +127,26 @@ Mature mRNA:  5'-CAP-[Exon 1]-[Exon 2]-[Exon 3]-AAAAA...-3'
 
 ```
 Pre-mRNA:
- ┌────────┐  ┌──────────┐  ┌────────┐  ┌──────────┐  ┌────────┐  ┌──────┐
- │ Exon 1 │  │ Intron 1 │  │ Exon 2 │  │ Intron 2 │  │ Exon 3 │  │3' UTR│
- └────────┘  └──────────┘  └────────┘  └──────────┘  └────────┘  └──────┘
-       ✂───────────✂         ✂───────────✂
-       │                        │
-       └────────────────────────┘
-                    ↓
-          Splicing (Spliceosome)
+  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐
+  │  Exon 1  │  │ Intron 1 │  │  Exon 2  │  │ Intron 2 │  │  Exon 3  │  │  3' UTR  │
+  └──────────┘  └──────────┘  └──────────┘  └──────────┘  └──────────┘  └──────────┘
+             ✂──────────────✂            ✂──────────────✂
+       │                            │
+       └────────────────────────────┘
+                      ↓
+            Splicing (Spliceosome)
 
 Mature mRNA:
- ┌────────┐  ┌────────┐  ┌────────┐  ┌──────┐
- │ Exon 1 │  │ Exon 2 │  │ Exon 3 │  │3' UTR│
- └────────┘  └────────┘  └────────┘  └──────┘
+  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐
+  │  Exon 1  │  │  Exon 2  │  │  Exon 3  │  │  3' UTR  │
+  └──────────┘  └──────────┘  └──────────┘  └──────────┘
 
 Alternative Splicing:
-One gene → multiple mRNA variants (compile-time feature flags)
+  One gene -> multiple mRNA variants (compile-time feature flags)
   [E1]─[E2]─[E3]─[E4]
-     → E1-E2-E4  (skip E3)
-     → E1-E3-E4  (skip E2)
-     → E1-E2-E3-E4 (full length)
+     -> E1-E2-E4  (skip E3)
+     -> E1-E3-E4  (skip E2)
+     -> E1-E2-E3-E4 (full length)
 ```
 
 **Introns** are non-coding regions; **exons** are coding.

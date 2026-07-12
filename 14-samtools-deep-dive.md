@@ -401,7 +401,6 @@ samtools mpileup -uf reference.fa aligned.bam | \
 ## Next Steps
 
 → `15-bcftools-deep-dive.md` — BCFtools for VCF/BCF files  
-→ `16-nextflow-dsl2.md` — Automating these steps in pipelines  
 
 ---
 

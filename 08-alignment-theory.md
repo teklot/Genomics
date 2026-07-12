@@ -141,7 +141,7 @@ Query:  A C T G A C
 Ref:    A C T G A C T
 Scoring: match=+1, mismatch=-4, gap=-6
 
-       A  C  T  G  A  C  T
+      A  C  T  G  A  C  T
    0  0  0  0  0  0  0  0
 A  0  1  0  0  0  1  0  0
 C  0  0  2  0  0  0  1  0

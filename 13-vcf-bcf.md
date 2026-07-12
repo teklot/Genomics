@@ -417,7 +417,6 @@ vcf.close()
 
 → `14-samtools-deep-dive.md` — SAMtools commands for BAM processing  
 → `15-bcftools-deep-dive.md` — BCFtools commands for VCF processing  
-→ `16-nextflow-dsl2.md` — Automating the full pipeline  
 
 ---
 

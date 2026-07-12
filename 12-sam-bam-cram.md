@@ -313,13 +313,13 @@ for read in bam.fetch("chr1", 1000000, 1000100):
     pass
 
 # Access key fields
-read.query_name    # QNAME
-read.flag          # FLAG
-read.reference_name  # RNAME
+read.query_name       # QNAME
+read.flag             # FLAG
+read.reference_name   # RNAME
 read.reference_start  # POS (0-based)
 read.mapping_quality  # MAPQ
-read.cigarstring   # CIGAR string
-read.query_sequence  # SEQ
+read.cigarstring      # CIGAR string
+read.query_sequence   # SEQ
 read.query_qualities  # QUAL (list of int)
 
 # Check flags

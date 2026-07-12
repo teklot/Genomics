@@ -72,16 +72,16 @@ Phosphate → Sugar → Phosphate → Sugar → Phosphate → Sugar ...
 DNA is **double-stranded**. Two strands run in **opposite directions** (antiparallel) and are held together by **base pairing**.
 
 ```
-5'  A ─ T ─ G ─ C ─ T ─ A ─ C ─ G  3'
-    |   |   |   |   |   |   |   |
-    ═══ ═══ ═══ ═══ ═══ ═══ ═══ ═══
-    |   |   |   |   |   |   |   |
-3'  T ─ A ─ C ─ G ─ A ─ T ─ G ─ C  5'
+  5'  A ─── T ─── G ─── C ─── T ─── A ─── C ─── G  3'
+      |     |     |     |     |     |     |     |
+      ═════ ═════ ═════ ═════ ═════ ═════ ═════ ═════
+      |     |     |     |     |     |     |     |
+  3'  T ─── A ─── C ─── G ─── A ─── T ─── G ─── C  5'
 
 Legend:
-  ═══  A=T (2 H-bonds), G=C (3 H-bonds)
-  ───  Sugar-Phosphate Backbone
-  |    Hydrogen bonds between bases
+  ═════  A=T (2 H-bonds), G=C (3 H-bonds)
+  ─────  Sugar-Phosphate Backbone
+  |      Hydrogen bonds between bases
 
 Strands run antiparallel (5'→3' ⇔ 3'→5')
 Each strand is a full backup of the other
@@ -120,9 +120,9 @@ assert reverse_complement("ATGCTAG") == "CTAGCAT"
 DNA has a **5' (five-prime) end** and a **3' (three-prime) end**. The strands run antiparallel:
 
 ```
-5' - A T G C - 3'
-     | | | |
-3' - T A C G - 5'
+  5'  A ─── T ─── G ─── C  3'
+      |     |     |     |
+  3'  T ─── A ─── C ─── G  5'
 ```
 
 This direction matters for sequencing and replication.
@@ -134,7 +134,7 @@ This direction matters for sequencing and replication.
 The physical order of bases along the strand is the information:
 
 ```
-5' - A G T G C T T A C C G A T - 3'
+  5'  A G T G C T T A C C G A T  3'
 ```
 
 This is analogous to a binary string, but with 4 states instead of 2. Every cell in your body (except red blood cells) contains a copy of this string, roughly **3.2 billion characters** long (the human genome).

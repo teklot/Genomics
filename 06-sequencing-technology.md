@@ -80,11 +80,11 @@ Step 4: Base Calling
 ### Key Concepts for Illumina
 
 ```
-  [Adapter]─┤                                     ├─[Adapter]
-            │  Read 1 (150 bp) →                  │
+  [Adapter]─┤                                      ├─[Adapter]
+            │  Read 1 (150 bp) →                   │
             │                    ← Read 2 (150 bp) │
-            └─────────────────────────────────────┘
-            ◄───── Insert Size (350 bp) ──────────→
+            └──────────────────────────────────────┘
+            ◄───── Insert Size (350 bp) ──────────>
             ◄─ Gap (50 bp) ─→
             Gap = Insert - (R1 + R2)
 ```
@@ -94,7 +94,7 @@ Step 4: Base Calling
 ```
 Fragment:  ┌──────────────────────────────────────┐
            │ 150 bp              150 bp           │
-Read 1:    └────────────────────→                 │
+Read 1:    └────────────────────>                 │
 Read 2:    ◄────────────────────┘                 │
            └──────────────────────────────────────┘
                 Insert size (variable)
@@ -127,14 +127,14 @@ Nanopore sequences single molecules in real time.
 ```
   cis side (Input DNA)
   ┌─────────────────────────────────┐
-  │   A ─ T ─ G ─ C ─ A ─ T ─ G    │
+  │   A ─ T ─ G ─ C ─ A ─ T ─ G     │
   │              ↓                  │
-  │  ┌─────── Nanopore ───────┐     │
-  ├──│  Biological nanopore   │─────┤ ← Lipid Bilayer Membrane
-  │  │  embedded in membrane  │     │
-  │  └────────────────────────┘     │
+  │   ┌────── Nanopore ──────┐      │
+  ├───│ Biological nanopore  │──────┤ ← Lipid Bilayer Membrane
+  │   │ embedded in membrane │      │
+  │   └──────────────────────┘      │
   │              ↓                  │
-  │   Ionic Current (pA) ─~‾~‾~‾   │
+  │   Ionic Current (pA) ─~‾~‾~‾    │
   │   Unique disruption per base    │
   │              ↓                  │
   │   Base Caller (Neural Network)  │

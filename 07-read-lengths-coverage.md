@@ -99,20 +99,20 @@ Example:
 ### Coverage Distribution
 
 ```
-Reference: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Reference: ──────────────────────────────────────────────
 
-Reads stacked above (high → medium → low coverage):
-  ████████  █████          ███
- █████████  ██████         ████
- █████████  ██████        █████
- ██████████  ██████
- ██████████  ███████
- ███████████  ██████
+Reads stacked above (high to medium to low coverage):
+ ████████████
+ ████████████
  ███████████
- ████████████
- ████████████
-────────────────────────────────────────────────────
-  9× depth      4× depth         2× depth
+ ███████████  ███████
+ ██████████   ██████
+ ██████████   ██████   █████
+ █████████    ██████   ████
+ █████████    █████    ███
+ ████████     █████    ███
+ ──────────────────────────────
+   9× depth   4× depth 2× depth
 
 Mean coverage = 5× (each base read ~5 times on average)
 Higher coverage = more confidence in base calls & variant detection
@@ -121,8 +121,8 @@ Higher coverage = more confidence in base calls & variant detection
 Coverage is not uniform across the genome:
 
 ```
-Position:  ████████████████░░░░██████████████████░░██████
-Coverage:     45×         2×         50×          8×
+Position: ████████████████░░░░██████████████████░░██████
+Coverage:    45×         2×         50×          8×
 ```
 
 Regions with:
@@ -240,10 +240,10 @@ for d in [5, 10, 20, 30]:
 ```
 Cost for one human genome:
 
-                  FASTQ       BAM         Cost (approx.)
-  5× (low-pass):  30 GB       10 GB       $100–200
-  30× (WGS):      200 GB      60 GB       $600–1,000
-  60× (deep):     400 GB      120 GB      $1,200–2,000
+  Coverage          FASTQ       BAM         Cost (approx.)
+  5× (low-pass):    30 GB       10 GB       $100–200
+  30× (WGS):        200 GB      60 GB       $600–1,000
+  60× (deep):       400 GB      120 GB      $1,200–2,000
 ```
 
 ### Coverage Downsampling
@@ -285,7 +285,7 @@ For paired-end reads, **insert size** is the distance between the two reads on t
 
 ```
           ← insert size →
-          ┌────────────────┐
+          ┌─────────────────┐
 Read 1:   └────→            │
 Read 2:    ◄────────────────┘
 ```
