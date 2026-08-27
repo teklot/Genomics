@@ -24,7 +24,7 @@ A progressive, self-contained study guide that builds from molecular biology fun
 | 2 | 5–8 | Sequencing & Alignment | `06`–`10` |
 | 3 | 9–12 | File Formats & CLI Tools | `11`–`15` |
 
-**Total: ~142–204 hours over 12 weeks (~12–17 hrs/week for a working engineer).**
+**Total: ~142–204 hours core (~170–245 hours with 20% buffer) over 12 weeks (~14–20 hrs/week).**
 
 ## How to Use
 
@@ -40,15 +40,15 @@ A progressive, self-contained study guide that builds from molecular biology fun
 | 03 | [Genes & Chromosomes](03-genes-chromosomes.md) | 01–02 | Gene structure, chromosome anatomy, genome organization |
 | 04 | [Central Dogma](04-central-dogma.md) | 01–03 | DNA→RNA→Protein flow, reading frames, the ribosome |
 | 05 | [Mutations & Genetics](05-mutations-genetics.md) | 01–04 | SNVs, indels, structural variants, frameshift effects |
-| 06 | [Sequencing Technology](06-sequencing-technology.md) | 01–05 | Illumina SBS, Nanopore, libraries, read types |
-| 07 | [Read Lengths & Coverage](07-read-lengths-coverage.md) | 01–05 | Coverage depth, Poisson statistics, mate pairs |
+| 06 | [Sequencing Technology](06-sequencing-technology.md) | 01–03 | Illumina SBS, Nanopore, libraries, read types |
+| 07 | [Read Lengths & Coverage](07-read-lengths-coverage.md) | 06 | Coverage depth, Poisson statistics, mate pairs |
 | 08 | [Alignment Theory](08-alignment-theory.md) | 06–07 | Seed-and-extend, Smith-Waterman, SAM flags, MAPQ |
 | 09 | [Quality Scores](09-quality-scores.md) | 06–07 | Phred scores, quality encoding, error probability |
 | 10 | [Quality Control](10-quality-control.md) | 06–09 | FastQC, trimming, contamination detection |
-| 11 | [FASTA & FASTQ Format](11-fasta-fastq.md) | 06–10 | Record structure, parsing, validation, tools |
-| 12 | [SAM/BAM/CRAM Format](12-sam-bam-cram.md) | 06–11 | 11 required columns, flags, CIGAR, compression |
-| 13 | [VCF/BCF Format](13-vcf-bcf.md) | 06–11 | Header, records, genotypes, INFO/FORMAT fields |
-| 14 | [SAMtools Deep Dive](14-samtools-deep-dive.md) | 12 | View, sort, index, flagstat, mpileup |
+| 11 | [FASTA & FASTQ Format](11-fasta-fastq.md) | 06, 09–10 | Record structure, parsing, validation, tools |
+| 12 | [SAM/BAM/CRAM Format](12-sam-bam-cram.md) | 08, 11 | 11 required columns, flags, CIGAR, compression |
+| 13 | [VCF/BCF Format](13-vcf-bcf.md) | 05, 08, 12 | Header, records, genotypes, INFO/FORMAT fields |
+| 14 | [SAMtools Deep Dive](14-samtools-deep-dive.md) | 08, 12 | View, sort, index, flagstat, mpileup |
 | 15 | [BCFtools Deep Dive](15-bcftools-deep-dive.md) | 13–14 | Filter, merge, stats, norm, consensus |
 
 ## Prerequisites
@@ -84,8 +84,8 @@ A progressive, self-contained study guide that builds from molecular biology fun
 
 | # | File | Prerequisites | Est. Hours |
 |---|------|---------------|------------|
-| 06 | [`06-sequencing-technology.md`](06-sequencing-technology.md) | 01–05 | 10–14 |
-| 07 | [`07-read-lengths-coverage.md`](07-read-lengths-coverage.md) | 01–05 | 8–12 |
+| 06 | [`06-sequencing-technology.md`](06-sequencing-technology.md) | 01–03 | 10–14 |
+| 07 | [`07-read-lengths-coverage.md`](07-read-lengths-coverage.md) | 06 | 8–12 |
 | 08 | [`08-alignment-theory.md`](08-alignment-theory.md) | 06–07 | 14–20 |
 | 09 | [`09-quality-scores.md`](09-quality-scores.md) | 06–07 | 6–10 |
 | 10 | [`10-quality-control.md`](10-quality-control.md) | 06–09 | 8–12 |
@@ -102,10 +102,10 @@ A progressive, self-contained study guide that builds from molecular biology fun
 
 | # | File | Prerequisites | Est. Hours |
 |---|------|---------------|------------|
-| 11 | [`11-fasta-fastq.md`](11-fasta-fastq.md) | 06–10 | 10–14 |
-| 12 | [`12-sam-bam-cram.md`](12-sam-bam-cram.md) | 06–11 | 12–16 |
-| 13 | [`13-vcf-bcf.md`](13-vcf-bcf.md) | 06–11 | 10–14 |
-| 14 | [`14-samtools-deep-dive.md`](14-samtools-deep-dive.md) | 12 | 12–16 |
+| 11 | [`11-fasta-fastq.md`](11-fasta-fastq.md) | 06, 09–10 | 10–14 |
+| 12 | [`12-sam-bam-cram.md`](12-sam-bam-cram.md) | 08, 11 | 12–16 |
+| 13 | [`13-vcf-bcf.md`](13-vcf-bcf.md) | 05, 08, 12 | 10–14 |
+| 14 | [`14-samtools-deep-dive.md`](14-samtools-deep-dive.md) | 08, 12 | 12–16 |
 | 15 | [`15-bcftools-deep-dive.md`](15-bcftools-deep-dive.md) | 13–14 | 10–14 |
 
 **Phase total: 54–74 hours**
