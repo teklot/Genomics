@@ -1,20 +1,66 @@
-# Genomics for Software Engineers — Year 1 Curriculum
+# Genomics for Software Engineers
 
-A progressive, self-contained study guide that builds from molecular biology fundamentals to fluency in genomics file formats and CLI tools.
+*A hands-on, 12-week crash course that teaches you minimum-viable biology — and maximum practical bioinformatics.*
+
+---
+
+## The Story
+
+I joined a project that needed genomics. I'm a software engineer, not a biologist — and everything I found sat at two extremes: PhD-level textbooks, and tool docs written for people who already know the field. Nothing bridged the gap for engineers whose career is already aligned to shipping software.
+
+So I built my own curriculum. DNA became a data structure; the sequencer became a physical-to-digital converter; alignment became a string-matching problem; FASTA and VCF became data contracts. Just enough biology to understand what the data means, and deep engineering practice on the tools real pipelines run.
+
+**This repo is that curriculum — the resource I wish existed before I started.**
+
+---
+
+## What You'll Be Able to Do
+
+- Explain a sequencing pipeline end-to-end, in engineering terms
+- Read, write, and manipulate FASTQ, BAM, CRAM, and VCF files
+- Run quality control with FastQC and fastp
+- Align reads with BWA and Minimap2
+- Call and filter variants with SAMtools + BCFtools
+- Reason about coverage, quality scores, and alignment confidence like a bioinformatician
+
+---
+
+## Where This Leads — Real Pipelines
+
+Everything here maps to real, production-grade bioinformatics workflows. The canonical example — and the one most cloud genomics platforms are built around — is **germline short-read variant calling**:
+
+```
+FASTQ ──▶ QC ──▶ Align ──▶ Clean ──▶ Call ──▶ Filter ──▶ VCF
+(fastp)   (BWA)  (SAMtools)  (BCFtools)       (final variants)
+```
+
+By the end of the curriculum you can build this end-to-end. The same skills generalize to:
+
+| Scenario | What you do |
+|----------|-------------|
+| **Whole-genome / exome variant calling** | QC reads → align to a reference → process BAMs → call and filter SNVs/indels → analyze a VCF |
+| **RNA-seq / gene expression** | Map reads to the transcriptome → count reads per gene → find differentially expressed genes |
+| **Long-read assembly (Nanopore/PacBio)** | Align with Minimap2 → assemble/de novo → polish contigs |
+
+---
+
+## Tools You'll Master
+
+| Tool | Where it fits |
+|------|---------------|
+| **FastQC, fastp** | Read quality reporting and trimming (QC stage) |
+| **BWA, Minimap2** | Short-read and long-read alignment |
+| **SAMtools** | The Swiss Army knife for BAM/CRAM manipulation |
+| **BCFtools** | Variant calling, filtering, and statistics |
+| **FASTA, FASTQ, SAM/BAM/CRAM, VCF/BCF** | Full format fluency — you'll parse and write these by hand and from code |
+
+---
 
 ## Target Audience
 
 - Software engineers transitioning into bioinformatics / platform engineering
 - Already comfortable with Linux CLI, at least one programming language (preferably C# or Python)
 - Want to reach a **top-tier, high-earning** role combining genomics + cloud + full-stack skills
-
-## What You'll Be Able to Do
-
-- Explain a sequencing pipeline end-to-end
-- Read, write, and manipulate FASTQ, BAM, CRAM, and VCF files
-- Run quality control with FastQC and fastp
-- Align reads with BWA and Minimap2
-- Call and filter variants with SAMtools + BCFtools
 
 ## Structure
 
@@ -155,3 +201,9 @@ This curriculum requires **~14–20 hours/week** for a working engineer to finis
 | Python | Codecademy or Real Python |
 | AWS | AWS Skill Builder — free digital courses for Batch, S3, IAM |
 | Docker | Docker's "Get Started" guide |
+
+---
+
+## License
+
+[MIT](LICENSE)
